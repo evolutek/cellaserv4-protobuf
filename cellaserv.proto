@@ -1,0 +1,8 @@
+package cellaserv;
+
+message Message {
+    enum MessageType {
+        Register = 0;
+    }
+    required MessageType type = 1;
+}
