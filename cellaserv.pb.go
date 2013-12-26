@@ -16,14 +16,26 @@ var _ = math.Inf
 type Message_MessageType int32
 
 const (
-	Message_Register Message_MessageType = 0
+	Message_Register  Message_MessageType = 0
+	Message_Request   Message_MessageType = 1
+	Message_Reply     Message_MessageType = 2
+	Message_Subscribe Message_MessageType = 3
+	Message_Publish   Message_MessageType = 4
 )
 
 var Message_MessageType_name = map[int32]string{
 	0: "Register",
+	1: "Request",
+	2: "Reply",
+	3: "Subscribe",
+	4: "Publish",
 }
 var Message_MessageType_value = map[string]int32{
-	"Register": 0,
+	"Register":  0,
+	"Request":   1,
+	"Reply":     2,
+	"Subscribe": 3,
+	"Publish":   4,
 }
 
 func (x Message_MessageType) Enum() *Message_MessageType {
@@ -45,6 +57,7 @@ func (x *Message_MessageType) UnmarshalJSON(data []byte) error {
 
 type Message struct {
 	Type             *Message_MessageType `protobuf:"varint,1,req,name=type,enum=cellaserv.Message_MessageType" json:"type,omitempty"`
+	Content          []byte               `protobuf:"bytes,2,req,name=content" json:"content,omitempty"`
 	XXX_unrecognized []byte               `json:"-"`
 }
 
@@ -57,6 +70,149 @@ func (m *Message) GetType() Message_MessageType {
 		return *m.Type
 	}
 	return Message_Register
+}
+
+func (m *Message) GetContent() []byte {
+	if m != nil {
+		return m.Content
+	}
+	return nil
+}
+
+type Register struct {
+	Name             *string `protobuf:"bytes,1,req,name=name" json:"name,omitempty"`
+	Identification   *string `protobuf:"bytes,2,opt,name=identification" json:"identification,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
+}
+
+func (m *Register) Reset()         { *m = Register{} }
+func (m *Register) String() string { return proto.CompactTextString(m) }
+func (*Register) ProtoMessage()    {}
+
+func (m *Register) GetName() string {
+	if m != nil && m.Name != nil {
+		return *m.Name
+	}
+	return ""
+}
+
+func (m *Register) GetIdentification() string {
+	if m != nil && m.Identification != nil {
+		return *m.Identification
+	}
+	return ""
+}
+
+type Request struct {
+	ServiceName           *string `protobuf:"bytes,1,req,name=service_name" json:"service_name,omitempty"`
+	ServiceIdentification *string `protobuf:"bytes,2,opt,name=service_identification" json:"service_identification,omitempty"`
+	Method                *string `protobuf:"bytes,3,req,name=method" json:"method,omitempty"`
+	Args                  []byte  `protobuf:"bytes,4,opt,name=args" json:"args,omitempty"`
+	Id                    *uint64 `protobuf:"varint,99,req,name=id" json:"id,omitempty"`
+	XXX_unrecognized      []byte  `json:"-"`
+}
+
+func (m *Request) Reset()         { *m = Request{} }
+func (m *Request) String() string { return proto.CompactTextString(m) }
+func (*Request) ProtoMessage()    {}
+
+func (m *Request) GetServiceName() string {
+	if m != nil && m.ServiceName != nil {
+		return *m.ServiceName
+	}
+	return ""
+}
+
+func (m *Request) GetServiceIdentification() string {
+	if m != nil && m.ServiceIdentification != nil {
+		return *m.ServiceIdentification
+	}
+	return ""
+}
+
+func (m *Request) GetMethod() string {
+	if m != nil && m.Method != nil {
+		return *m.Method
+	}
+	return ""
+}
+
+func (m *Request) GetArgs() []byte {
+	if m != nil {
+		return m.Args
+	}
+	return nil
+}
+
+func (m *Request) GetId() uint64 {
+	if m != nil && m.Id != nil {
+		return *m.Id
+	}
+	return 0
+}
+
+type Reply struct {
+	Reply            []byte  `protobuf:"bytes,1,opt,name=reply" json:"reply,omitempty"`
+	Id               *uint64 `protobuf:"varint,99,req,name=id" json:"id,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
+}
+
+func (m *Reply) Reset()         { *m = Reply{} }
+func (m *Reply) String() string { return proto.CompactTextString(m) }
+func (*Reply) ProtoMessage()    {}
+
+func (m *Reply) GetReply() []byte {
+	if m != nil {
+		return m.Reply
+	}
+	return nil
+}
+
+func (m *Reply) GetId() uint64 {
+	if m != nil && m.Id != nil {
+		return *m.Id
+	}
+	return 0
+}
+
+type Subscribe struct {
+	Event            *string `protobuf:"bytes,1,req,name=event" json:"event,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
+}
+
+func (m *Subscribe) Reset()         { *m = Subscribe{} }
+func (m *Subscribe) String() string { return proto.CompactTextString(m) }
+func (*Subscribe) ProtoMessage()    {}
+
+func (m *Subscribe) GetEvent() string {
+	if m != nil && m.Event != nil {
+		return *m.Event
+	}
+	return ""
+}
+
+type Publish struct {
+	Event            *string `protobuf:"bytes,1,req,name=event" json:"event,omitempty"`
+	Content          []byte  `protobuf:"bytes,2,opt,name=content" json:"content,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
+}
+
+func (m *Publish) Reset()         { *m = Publish{} }
+func (m *Publish) String() string { return proto.CompactTextString(m) }
+func (*Publish) ProtoMessage()    {}
+
+func (m *Publish) GetEvent() string {
+	if m != nil && m.Event != nil {
+		return *m.Event
+	}
+	return ""
+}
+
+func (m *Publish) GetContent() []byte {
+	if m != nil {
+		return m.Content
+	}
+	return nil
 }
 
 func init() {

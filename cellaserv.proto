@@ -3,6 +3,38 @@ package cellaserv;
 message Message {
     enum MessageType {
         Register = 0;
+        Request = 1;
+        Reply = 2;
+        Subscribe = 3;
+        Publish = 4;
     }
     required MessageType type = 1;
+    required bytes content = 2;
+}
+
+message Register {
+    required string name = 1;
+    optional string identification = 2;
+}
+
+message Request {
+    required string service_name = 1;
+    optional string service_identification = 2;
+    required string method = 3;
+    optional bytes args = 4;
+    required uint64 id = 99;
+}
+
+message Reply {
+    optional bytes reply = 1;
+    required uint64 id = 99;
+}
+
+message Subscribe {
+    required string event = 1;
+}
+
+message Publish {
+    required string event = 1;
+    optional bytes content = 2;
 }
