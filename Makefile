@@ -1,7 +1,8 @@
 IN = cellaserv.proto
-OUT = cellaserv.pb.go cellaserv_pb2.py cellaserv.pb.cc
+OUT = cellaserv.pb.go cellaserv_pb2.py cpp/cellaserv.pb.cc cpp/cellaserv.pb.h
 
 all: $(OUT)
 
 $(OUT): $(IN)
-	protoc --cpp_out=. --python_out=. --go_out=. $(IN)
+	@mkdir -p cpp
+	protoc --cpp_out=cpp --python_out=. --go_out=. $(IN)
