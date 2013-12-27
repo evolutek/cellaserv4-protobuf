@@ -87,7 +87,7 @@ void protobuf_AssignDesc_cellaserv_2eproto() {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Request, service_name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Request, service_identification_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Request, method_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Request, args_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Request, data_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Request, id_),
   };
   Request_reflection_ =
@@ -103,7 +103,7 @@ void protobuf_AssignDesc_cellaserv_2eproto() {
       sizeof(Request));
   Reply_descriptor_ = file->message_type(3);
   static const int Reply_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Reply, reply_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Reply, data_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Reply, id_),
   };
   Reply_reflection_ =
@@ -135,7 +135,7 @@ void protobuf_AssignDesc_cellaserv_2eproto() {
   Publish_descriptor_ = file->message_type(5);
   static const int Publish_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Publish, event_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Publish, content_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Publish, data_),
   };
   Publish_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -205,11 +205,11 @@ void protobuf_AddDesc_cellaserv_2eproto() {
     "Subscribe\020\003\022\013\n\007Publish\020\004\"0\n\010Register\022\014\n\004"
     "name\030\001 \002(\t\022\026\n\016identification\030\002 \001(\t\"i\n\007Re"
     "quest\022\024\n\014service_name\030\001 \002(\t\022\036\n\026service_i"
-    "dentification\030\002 \001(\t\022\016\n\006method\030\003 \002(\t\022\014\n\004a"
-    "rgs\030\004 \001(\014\022\n\n\002id\030c \002(\004\"\"\n\005Reply\022\r\n\005reply\030"
-    "\001 \001(\014\022\n\n\002id\030c \002(\004\"\032\n\tSubscribe\022\r\n\005event\030"
-    "\001 \002(\t\")\n\007Publish\022\r\n\005event\030\001 \002(\t\022\017\n\007conte"
-    "nt\030\002 \001(\014", 448);
+    "dentification\030\002 \001(\t\022\016\n\006method\030\003 \002(\t\022\014\n\004d"
+    "ata\030\004 \001(\014\022\n\n\002id\030c \002(\004\"!\n\005Reply\022\014\n\004data\030\001"
+    " \001(\014\022\n\n\002id\030c \002(\004\"\032\n\tSubscribe\022\r\n\005event\030\001"
+    " \002(\t\"&\n\007Publish\022\r\n\005event\030\001 \002(\t\022\014\n\004data\030\002"
+    " \001(\014", 444);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "cellaserv.proto", &protobuf_RegisterTypes);
   Message::default_instance_ = new Message();
@@ -813,7 +813,7 @@ void Register::Swap(Register* other) {
 const int Request::kServiceNameFieldNumber;
 const int Request::kServiceIdentificationFieldNumber;
 const int Request::kMethodFieldNumber;
-const int Request::kArgsFieldNumber;
+const int Request::kDataFieldNumber;
 const int Request::kIdFieldNumber;
 #endif  // !_MSC_VER
 
@@ -836,7 +836,7 @@ void Request::SharedCtor() {
   service_name_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   service_identification_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   method_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
-  args_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  data_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   id_ = GOOGLE_ULONGLONG(0);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -855,8 +855,8 @@ void Request::SharedDtor() {
   if (method_ != &::google::protobuf::internal::kEmptyString) {
     delete method_;
   }
-  if (args_ != &::google::protobuf::internal::kEmptyString) {
-    delete args_;
+  if (data_ != &::google::protobuf::internal::kEmptyString) {
+    delete data_;
   }
   if (this != default_instance_) {
   }
@@ -900,9 +900,9 @@ void Request::Clear() {
         method_->clear();
       }
     }
-    if (has_args()) {
-      if (args_ != &::google::protobuf::internal::kEmptyString) {
-        args_->clear();
+    if (has_data()) {
+      if (data_ != &::google::protobuf::internal::kEmptyString) {
+        data_->clear();
       }
     }
     id_ = GOOGLE_ULONGLONG(0);
@@ -963,17 +963,17 @@ bool Request::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(34)) goto parse_args;
+        if (input->ExpectTag(34)) goto parse_data;
         break;
       }
 
-      // optional bytes args = 4;
+      // optional bytes data = 4;
       case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-         parse_args:
+         parse_data:
           DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_args()));
+                input, this->mutable_data()));
         } else {
           goto handle_uninterpreted;
         }
@@ -1042,10 +1042,10 @@ void Request::SerializeWithCachedSizes(
       3, this->method(), output);
   }
 
-  // optional bytes args = 4;
-  if (has_args()) {
+  // optional bytes data = 4;
+  if (has_data()) {
     ::google::protobuf::internal::WireFormatLite::WriteBytes(
-      4, this->args(), output);
+      4, this->data(), output);
   }
 
   // required uint64 id = 99;
@@ -1091,11 +1091,11 @@ void Request::SerializeWithCachedSizes(
         3, this->method(), target);
   }
 
-  // optional bytes args = 4;
-  if (has_args()) {
+  // optional bytes data = 4;
+  if (has_data()) {
     target =
       ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        4, this->args(), target);
+        4, this->data(), target);
   }
 
   // required uint64 id = 99;
@@ -1135,11 +1135,11 @@ int Request::ByteSize() const {
           this->method());
     }
 
-    // optional bytes args = 4;
-    if (has_args()) {
+    // optional bytes data = 4;
+    if (has_data()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::BytesSize(
-          this->args());
+          this->data());
     }
 
     // required uint64 id = 99;
@@ -1185,8 +1185,8 @@ void Request::MergeFrom(const Request& from) {
     if (from.has_method()) {
       set_method(from.method());
     }
-    if (from.has_args()) {
-      set_args(from.args());
+    if (from.has_data()) {
+      set_data(from.data());
     }
     if (from.has_id()) {
       set_id(from.id());
@@ -1218,7 +1218,7 @@ void Request::Swap(Request* other) {
     std::swap(service_name_, other->service_name_);
     std::swap(service_identification_, other->service_identification_);
     std::swap(method_, other->method_);
-    std::swap(args_, other->args_);
+    std::swap(data_, other->data_);
     std::swap(id_, other->id_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
@@ -1238,7 +1238,7 @@ void Request::Swap(Request* other) {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int Reply::kReplyFieldNumber;
+const int Reply::kDataFieldNumber;
 const int Reply::kIdFieldNumber;
 #endif  // !_MSC_VER
 
@@ -1258,7 +1258,7 @@ Reply::Reply(const Reply& from)
 
 void Reply::SharedCtor() {
   _cached_size_ = 0;
-  reply_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  data_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   id_ = GOOGLE_ULONGLONG(0);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -1268,8 +1268,8 @@ Reply::~Reply() {
 }
 
 void Reply::SharedDtor() {
-  if (reply_ != &::google::protobuf::internal::kEmptyString) {
-    delete reply_;
+  if (data_ != &::google::protobuf::internal::kEmptyString) {
+    delete data_;
   }
   if (this != default_instance_) {
   }
@@ -1298,9 +1298,9 @@ Reply* Reply::New() const {
 
 void Reply::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (has_reply()) {
-      if (reply_ != &::google::protobuf::internal::kEmptyString) {
-        reply_->clear();
+    if (has_data()) {
+      if (data_ != &::google::protobuf::internal::kEmptyString) {
+        data_->clear();
       }
     }
     id_ = GOOGLE_ULONGLONG(0);
@@ -1315,12 +1315,12 @@ bool Reply::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional bytes reply = 1;
+      // optional bytes data = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_reply()));
+                input, this->mutable_data()));
         } else {
           goto handle_uninterpreted;
         }
@@ -1362,10 +1362,10 @@ bool Reply::MergePartialFromCodedStream(
 
 void Reply::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // optional bytes reply = 1;
-  if (has_reply()) {
+  // optional bytes data = 1;
+  if (has_data()) {
     ::google::protobuf::internal::WireFormatLite::WriteBytes(
-      1, this->reply(), output);
+      1, this->data(), output);
   }
 
   // required uint64 id = 99;
@@ -1381,11 +1381,11 @@ void Reply::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Reply::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional bytes reply = 1;
-  if (has_reply()) {
+  // optional bytes data = 1;
+  if (has_data()) {
     target =
       ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        1, this->reply(), target);
+        1, this->data(), target);
   }
 
   // required uint64 id = 99;
@@ -1404,11 +1404,11 @@ int Reply::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional bytes reply = 1;
-    if (has_reply()) {
+    // optional bytes data = 1;
+    if (has_data()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::BytesSize(
-          this->reply());
+          this->data());
     }
 
     // required uint64 id = 99;
@@ -1445,8 +1445,8 @@ void Reply::MergeFrom(const ::google::protobuf::Message& from) {
 void Reply::MergeFrom(const Reply& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from.has_reply()) {
-      set_reply(from.reply());
+    if (from.has_data()) {
+      set_data(from.data());
     }
     if (from.has_id()) {
       set_id(from.id());
@@ -1475,7 +1475,7 @@ bool Reply::IsInitialized() const {
 
 void Reply::Swap(Reply* other) {
   if (other != this) {
-    std::swap(reply_, other->reply_);
+    std::swap(data_, other->data_);
     std::swap(id_, other->id_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
@@ -1722,7 +1722,7 @@ void Subscribe::Swap(Subscribe* other) {
 
 #ifndef _MSC_VER
 const int Publish::kEventFieldNumber;
-const int Publish::kContentFieldNumber;
+const int Publish::kDataFieldNumber;
 #endif  // !_MSC_VER
 
 Publish::Publish()
@@ -1742,7 +1742,7 @@ Publish::Publish(const Publish& from)
 void Publish::SharedCtor() {
   _cached_size_ = 0;
   event_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
-  content_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  data_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -1754,8 +1754,8 @@ void Publish::SharedDtor() {
   if (event_ != &::google::protobuf::internal::kEmptyString) {
     delete event_;
   }
-  if (content_ != &::google::protobuf::internal::kEmptyString) {
-    delete content_;
+  if (data_ != &::google::protobuf::internal::kEmptyString) {
+    delete data_;
   }
   if (this != default_instance_) {
   }
@@ -1789,9 +1789,9 @@ void Publish::Clear() {
         event_->clear();
       }
     }
-    if (has_content()) {
-      if (content_ != &::google::protobuf::internal::kEmptyString) {
-        content_->clear();
+    if (has_data()) {
+      if (data_ != &::google::protobuf::internal::kEmptyString) {
+        data_->clear();
       }
     }
   }
@@ -1817,17 +1817,17 @@ bool Publish::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(18)) goto parse_content;
+        if (input->ExpectTag(18)) goto parse_data;
         break;
       }
 
-      // optional bytes content = 2;
+      // optional bytes data = 2;
       case 2: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-         parse_content:
+         parse_data:
           DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_content()));
+                input, this->mutable_data()));
         } else {
           goto handle_uninterpreted;
         }
@@ -1862,10 +1862,10 @@ void Publish::SerializeWithCachedSizes(
       1, this->event(), output);
   }
 
-  // optional bytes content = 2;
-  if (has_content()) {
+  // optional bytes data = 2;
+  if (has_data()) {
     ::google::protobuf::internal::WireFormatLite::WriteBytes(
-      2, this->content(), output);
+      2, this->data(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -1886,11 +1886,11 @@ void Publish::SerializeWithCachedSizes(
         1, this->event(), target);
   }
 
-  // optional bytes content = 2;
-  if (has_content()) {
+  // optional bytes data = 2;
+  if (has_data()) {
     target =
       ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        2, this->content(), target);
+        2, this->data(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -1911,11 +1911,11 @@ int Publish::ByteSize() const {
           this->event());
     }
 
-    // optional bytes content = 2;
-    if (has_content()) {
+    // optional bytes data = 2;
+    if (has_data()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::BytesSize(
-          this->content());
+          this->data());
     }
 
   }
@@ -1948,8 +1948,8 @@ void Publish::MergeFrom(const Publish& from) {
     if (from.has_event()) {
       set_event(from.event());
     }
-    if (from.has_content()) {
-      set_content(from.content());
+    if (from.has_data()) {
+      set_data(from.data());
     }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
@@ -1976,7 +1976,7 @@ bool Publish::IsInitialized() const {
 void Publish::Swap(Publish* other) {
   if (other != this) {
     std::swap(event_, other->event_);
-    std::swap(content_, other->content_);
+    std::swap(data_, other->data_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

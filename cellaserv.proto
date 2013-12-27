@@ -21,12 +21,12 @@ message Request {
     required string service_name = 1;
     optional string service_identification = 2;
     required string method = 3;
-    optional bytes args = 4;
+    optional bytes data = 4;
     required uint64 id = 99;
 }
 
 message Reply {
-    optional bytes reply = 1;
+    optional bytes data = 1;
     required uint64 id = 99;
 }
 
@@ -36,5 +36,5 @@ message Subscribe {
 
 message Publish {
     required string event = 1;
-    optional bytes content = 2;
+    optional bytes data = 2;
 }

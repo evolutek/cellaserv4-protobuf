@@ -107,7 +107,7 @@ type Request struct {
 	ServiceName           *string `protobuf:"bytes,1,req,name=service_name" json:"service_name,omitempty"`
 	ServiceIdentification *string `protobuf:"bytes,2,opt,name=service_identification" json:"service_identification,omitempty"`
 	Method                *string `protobuf:"bytes,3,req,name=method" json:"method,omitempty"`
-	Args                  []byte  `protobuf:"bytes,4,opt,name=args" json:"args,omitempty"`
+	Data                  []byte  `protobuf:"bytes,4,opt,name=data" json:"data,omitempty"`
 	Id                    *uint64 `protobuf:"varint,99,req,name=id" json:"id,omitempty"`
 	XXX_unrecognized      []byte  `json:"-"`
 }
@@ -137,9 +137,9 @@ func (m *Request) GetMethod() string {
 	return ""
 }
 
-func (m *Request) GetArgs() []byte {
+func (m *Request) GetData() []byte {
 	if m != nil {
-		return m.Args
+		return m.Data
 	}
 	return nil
 }
@@ -152,7 +152,7 @@ func (m *Request) GetId() uint64 {
 }
 
 type Reply struct {
-	Reply            []byte  `protobuf:"bytes,1,opt,name=reply" json:"reply,omitempty"`
+	Data             []byte  `protobuf:"bytes,1,opt,name=data" json:"data,omitempty"`
 	Id               *uint64 `protobuf:"varint,99,req,name=id" json:"id,omitempty"`
 	XXX_unrecognized []byte  `json:"-"`
 }
@@ -161,9 +161,9 @@ func (m *Reply) Reset()         { *m = Reply{} }
 func (m *Reply) String() string { return proto.CompactTextString(m) }
 func (*Reply) ProtoMessage()    {}
 
-func (m *Reply) GetReply() []byte {
+func (m *Reply) GetData() []byte {
 	if m != nil {
-		return m.Reply
+		return m.Data
 	}
 	return nil
 }
@@ -193,7 +193,7 @@ func (m *Subscribe) GetEvent() string {
 
 type Publish struct {
 	Event            *string `protobuf:"bytes,1,req,name=event" json:"event,omitempty"`
-	Content          []byte  `protobuf:"bytes,2,opt,name=content" json:"content,omitempty"`
+	Data             []byte  `protobuf:"bytes,2,opt,name=data" json:"data,omitempty"`
 	XXX_unrecognized []byte  `json:"-"`
 }
 
@@ -208,9 +208,9 @@ func (m *Publish) GetEvent() string {
 	return ""
 }
 
-func (m *Publish) GetContent() []byte {
+func (m *Publish) GetData() []byte {
 	if m != nil {
-		return m.Content
+		return m.Data
 	}
 	return nil
 }

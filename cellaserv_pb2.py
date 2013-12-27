@@ -14,7 +14,7 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='cellaserv.proto',
   package='cellaserv',
-  serialized_pb=b'\n\x0f\x63\x65llaserv.proto\x12\tcellaserv\"\x99\x01\n\x07Message\x12,\n\x04type\x18\x01 \x02(\x0e\x32\x1e.cellaserv.Message.MessageType\x12\x0f\n\x07\x63ontent\x18\x02 \x02(\x0c\"O\n\x0bMessageType\x12\x0c\n\x08Register\x10\x00\x12\x0b\n\x07Request\x10\x01\x12\t\n\x05Reply\x10\x02\x12\r\n\tSubscribe\x10\x03\x12\x0b\n\x07Publish\x10\x04\"0\n\x08Register\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\x16\n\x0eidentification\x18\x02 \x01(\t\"i\n\x07Request\x12\x14\n\x0cservice_name\x18\x01 \x02(\t\x12\x1e\n\x16service_identification\x18\x02 \x01(\t\x12\x0e\n\x06method\x18\x03 \x02(\t\x12\x0c\n\x04\x61rgs\x18\x04 \x01(\x0c\x12\n\n\x02id\x18\x63 \x02(\x04\"\"\n\x05Reply\x12\r\n\x05reply\x18\x01 \x01(\x0c\x12\n\n\x02id\x18\x63 \x02(\x04\"\x1a\n\tSubscribe\x12\r\n\x05\x65vent\x18\x01 \x02(\t\")\n\x07Publish\x12\r\n\x05\x65vent\x18\x01 \x02(\t\x12\x0f\n\x07\x63ontent\x18\x02 \x01(\x0c')
+  serialized_pb=b'\n\x0f\x63\x65llaserv.proto\x12\tcellaserv\"\x99\x01\n\x07Message\x12,\n\x04type\x18\x01 \x02(\x0e\x32\x1e.cellaserv.Message.MessageType\x12\x0f\n\x07\x63ontent\x18\x02 \x02(\x0c\"O\n\x0bMessageType\x12\x0c\n\x08Register\x10\x00\x12\x0b\n\x07Request\x10\x01\x12\t\n\x05Reply\x10\x02\x12\r\n\tSubscribe\x10\x03\x12\x0b\n\x07Publish\x10\x04\"0\n\x08Register\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\x16\n\x0eidentification\x18\x02 \x01(\t\"i\n\x07Request\x12\x14\n\x0cservice_name\x18\x01 \x02(\t\x12\x1e\n\x16service_identification\x18\x02 \x01(\t\x12\x0e\n\x06method\x18\x03 \x02(\t\x12\x0c\n\x04\x64\x61ta\x18\x04 \x01(\x0c\x12\n\n\x02id\x18\x63 \x02(\x04\"!\n\x05Reply\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\x0c\x12\n\n\x02id\x18\x63 \x02(\x04\"\x1a\n\tSubscribe\x12\r\n\x05\x65vent\x18\x01 \x02(\t\"&\n\x07Publish\x12\r\n\x05\x65vent\x18\x01 \x02(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\x0c')
 
 
 
@@ -152,7 +152,7 @@ _REQUEST = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='args', full_name='cellaserv.Request.args', index=3,
+      name='data', full_name='cellaserv.Request.data', index=3,
       number=4, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
@@ -187,7 +187,7 @@ _REPLY = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='reply', full_name='cellaserv.Reply.reply', index=0,
+      name='data', full_name='cellaserv.Reply.data', index=0,
       number=1, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
@@ -210,7 +210,7 @@ _REPLY = _descriptor.Descriptor(
   is_extendable=False,
   extension_ranges=[],
   serialized_start=343,
-  serialized_end=377,
+  serialized_end=376,
 )
 
 
@@ -237,8 +237,8 @@ _SUBSCRIBE = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=379,
-  serialized_end=405,
+  serialized_start=378,
+  serialized_end=404,
 )
 
 
@@ -257,7 +257,7 @@ _PUBLISH = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='content', full_name='cellaserv.Publish.content', index=1,
+      name='data', full_name='cellaserv.Publish.data', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
@@ -272,8 +272,8 @@ _PUBLISH = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=407,
-  serialized_end=448,
+  serialized_start=406,
+  serialized_end=444,
 )
 
 _MESSAGE.fields_by_name['type'].enum_type = _MESSAGE_MESSAGETYPE

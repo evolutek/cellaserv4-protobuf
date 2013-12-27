@@ -381,17 +381,17 @@ class Request : public ::google::protobuf::Message {
   inline ::std::string* release_method();
   inline void set_allocated_method(::std::string* method);
 
-  // optional bytes args = 4;
-  inline bool has_args() const;
-  inline void clear_args();
-  static const int kArgsFieldNumber = 4;
-  inline const ::std::string& args() const;
-  inline void set_args(const ::std::string& value);
-  inline void set_args(const char* value);
-  inline void set_args(const void* value, size_t size);
-  inline ::std::string* mutable_args();
-  inline ::std::string* release_args();
-  inline void set_allocated_args(::std::string* args);
+  // optional bytes data = 4;
+  inline bool has_data() const;
+  inline void clear_data();
+  static const int kDataFieldNumber = 4;
+  inline const ::std::string& data() const;
+  inline void set_data(const ::std::string& value);
+  inline void set_data(const char* value);
+  inline void set_data(const void* value, size_t size);
+  inline ::std::string* mutable_data();
+  inline ::std::string* release_data();
+  inline void set_allocated_data(::std::string* data);
 
   // required uint64 id = 99;
   inline bool has_id() const;
@@ -408,8 +408,8 @@ class Request : public ::google::protobuf::Message {
   inline void clear_has_service_identification();
   inline void set_has_method();
   inline void clear_has_method();
-  inline void set_has_args();
-  inline void clear_has_args();
+  inline void set_has_data();
+  inline void clear_has_data();
   inline void set_has_id();
   inline void clear_has_id();
 
@@ -418,7 +418,7 @@ class Request : public ::google::protobuf::Message {
   ::std::string* service_name_;
   ::std::string* service_identification_;
   ::std::string* method_;
-  ::std::string* args_;
+  ::std::string* data_;
   ::google::protobuf::uint64 id_;
 
   mutable int _cached_size_;
@@ -487,17 +487,17 @@ class Reply : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // optional bytes reply = 1;
-  inline bool has_reply() const;
-  inline void clear_reply();
-  static const int kReplyFieldNumber = 1;
-  inline const ::std::string& reply() const;
-  inline void set_reply(const ::std::string& value);
-  inline void set_reply(const char* value);
-  inline void set_reply(const void* value, size_t size);
-  inline ::std::string* mutable_reply();
-  inline ::std::string* release_reply();
-  inline void set_allocated_reply(::std::string* reply);
+  // optional bytes data = 1;
+  inline bool has_data() const;
+  inline void clear_data();
+  static const int kDataFieldNumber = 1;
+  inline const ::std::string& data() const;
+  inline void set_data(const ::std::string& value);
+  inline void set_data(const char* value);
+  inline void set_data(const void* value, size_t size);
+  inline ::std::string* mutable_data();
+  inline ::std::string* release_data();
+  inline void set_allocated_data(::std::string* data);
 
   // required uint64 id = 99;
   inline bool has_id() const;
@@ -508,14 +508,14 @@ class Reply : public ::google::protobuf::Message {
 
   // @@protoc_insertion_point(class_scope:cellaserv.Reply)
  private:
-  inline void set_has_reply();
-  inline void clear_has_reply();
+  inline void set_has_data();
+  inline void clear_has_data();
   inline void set_has_id();
   inline void clear_has_id();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::std::string* reply_;
+  ::std::string* data_;
   ::google::protobuf::uint64 id_;
 
   mutable int _cached_size_;
@@ -683,29 +683,29 @@ class Publish : public ::google::protobuf::Message {
   inline ::std::string* release_event();
   inline void set_allocated_event(::std::string* event);
 
-  // optional bytes content = 2;
-  inline bool has_content() const;
-  inline void clear_content();
-  static const int kContentFieldNumber = 2;
-  inline const ::std::string& content() const;
-  inline void set_content(const ::std::string& value);
-  inline void set_content(const char* value);
-  inline void set_content(const void* value, size_t size);
-  inline ::std::string* mutable_content();
-  inline ::std::string* release_content();
-  inline void set_allocated_content(::std::string* content);
+  // optional bytes data = 2;
+  inline bool has_data() const;
+  inline void clear_data();
+  static const int kDataFieldNumber = 2;
+  inline const ::std::string& data() const;
+  inline void set_data(const ::std::string& value);
+  inline void set_data(const char* value);
+  inline void set_data(const void* value, size_t size);
+  inline ::std::string* mutable_data();
+  inline ::std::string* release_data();
+  inline void set_allocated_data(::std::string* data);
 
   // @@protoc_insertion_point(class_scope:cellaserv.Publish)
  private:
   inline void set_has_event();
   inline void clear_has_event();
-  inline void set_has_content();
-  inline void clear_has_content();
+  inline void set_has_data();
+  inline void clear_has_data();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::std::string* event_;
-  ::std::string* content_;
+  ::std::string* data_;
 
   mutable int _cached_size_;
   ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
@@ -1175,73 +1175,73 @@ inline void Request::set_allocated_method(::std::string* method) {
   }
 }
 
-// optional bytes args = 4;
-inline bool Request::has_args() const {
+// optional bytes data = 4;
+inline bool Request::has_data() const {
   return (_has_bits_[0] & 0x00000008u) != 0;
 }
-inline void Request::set_has_args() {
+inline void Request::set_has_data() {
   _has_bits_[0] |= 0x00000008u;
 }
-inline void Request::clear_has_args() {
+inline void Request::clear_has_data() {
   _has_bits_[0] &= ~0x00000008u;
 }
-inline void Request::clear_args() {
-  if (args_ != &::google::protobuf::internal::kEmptyString) {
-    args_->clear();
+inline void Request::clear_data() {
+  if (data_ != &::google::protobuf::internal::kEmptyString) {
+    data_->clear();
   }
-  clear_has_args();
+  clear_has_data();
 }
-inline const ::std::string& Request::args() const {
-  return *args_;
+inline const ::std::string& Request::data() const {
+  return *data_;
 }
-inline void Request::set_args(const ::std::string& value) {
-  set_has_args();
-  if (args_ == &::google::protobuf::internal::kEmptyString) {
-    args_ = new ::std::string;
+inline void Request::set_data(const ::std::string& value) {
+  set_has_data();
+  if (data_ == &::google::protobuf::internal::kEmptyString) {
+    data_ = new ::std::string;
   }
-  args_->assign(value);
+  data_->assign(value);
 }
-inline void Request::set_args(const char* value) {
-  set_has_args();
-  if (args_ == &::google::protobuf::internal::kEmptyString) {
-    args_ = new ::std::string;
+inline void Request::set_data(const char* value) {
+  set_has_data();
+  if (data_ == &::google::protobuf::internal::kEmptyString) {
+    data_ = new ::std::string;
   }
-  args_->assign(value);
+  data_->assign(value);
 }
-inline void Request::set_args(const void* value, size_t size) {
-  set_has_args();
-  if (args_ == &::google::protobuf::internal::kEmptyString) {
-    args_ = new ::std::string;
+inline void Request::set_data(const void* value, size_t size) {
+  set_has_data();
+  if (data_ == &::google::protobuf::internal::kEmptyString) {
+    data_ = new ::std::string;
   }
-  args_->assign(reinterpret_cast<const char*>(value), size);
+  data_->assign(reinterpret_cast<const char*>(value), size);
 }
-inline ::std::string* Request::mutable_args() {
-  set_has_args();
-  if (args_ == &::google::protobuf::internal::kEmptyString) {
-    args_ = new ::std::string;
+inline ::std::string* Request::mutable_data() {
+  set_has_data();
+  if (data_ == &::google::protobuf::internal::kEmptyString) {
+    data_ = new ::std::string;
   }
-  return args_;
+  return data_;
 }
-inline ::std::string* Request::release_args() {
-  clear_has_args();
-  if (args_ == &::google::protobuf::internal::kEmptyString) {
+inline ::std::string* Request::release_data() {
+  clear_has_data();
+  if (data_ == &::google::protobuf::internal::kEmptyString) {
     return NULL;
   } else {
-    ::std::string* temp = args_;
-    args_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    ::std::string* temp = data_;
+    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
     return temp;
   }
 }
-inline void Request::set_allocated_args(::std::string* args) {
-  if (args_ != &::google::protobuf::internal::kEmptyString) {
-    delete args_;
+inline void Request::set_allocated_data(::std::string* data) {
+  if (data_ != &::google::protobuf::internal::kEmptyString) {
+    delete data_;
   }
-  if (args) {
-    set_has_args();
-    args_ = args;
+  if (data) {
+    set_has_data();
+    data_ = data;
   } else {
-    clear_has_args();
-    args_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    clear_has_data();
+    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   }
 }
 
@@ -1271,73 +1271,73 @@ inline void Request::set_id(::google::protobuf::uint64 value) {
 
 // Reply
 
-// optional bytes reply = 1;
-inline bool Reply::has_reply() const {
+// optional bytes data = 1;
+inline bool Reply::has_data() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void Reply::set_has_reply() {
+inline void Reply::set_has_data() {
   _has_bits_[0] |= 0x00000001u;
 }
-inline void Reply::clear_has_reply() {
+inline void Reply::clear_has_data() {
   _has_bits_[0] &= ~0x00000001u;
 }
-inline void Reply::clear_reply() {
-  if (reply_ != &::google::protobuf::internal::kEmptyString) {
-    reply_->clear();
+inline void Reply::clear_data() {
+  if (data_ != &::google::protobuf::internal::kEmptyString) {
+    data_->clear();
   }
-  clear_has_reply();
+  clear_has_data();
 }
-inline const ::std::string& Reply::reply() const {
-  return *reply_;
+inline const ::std::string& Reply::data() const {
+  return *data_;
 }
-inline void Reply::set_reply(const ::std::string& value) {
-  set_has_reply();
-  if (reply_ == &::google::protobuf::internal::kEmptyString) {
-    reply_ = new ::std::string;
+inline void Reply::set_data(const ::std::string& value) {
+  set_has_data();
+  if (data_ == &::google::protobuf::internal::kEmptyString) {
+    data_ = new ::std::string;
   }
-  reply_->assign(value);
+  data_->assign(value);
 }
-inline void Reply::set_reply(const char* value) {
-  set_has_reply();
-  if (reply_ == &::google::protobuf::internal::kEmptyString) {
-    reply_ = new ::std::string;
+inline void Reply::set_data(const char* value) {
+  set_has_data();
+  if (data_ == &::google::protobuf::internal::kEmptyString) {
+    data_ = new ::std::string;
   }
-  reply_->assign(value);
+  data_->assign(value);
 }
-inline void Reply::set_reply(const void* value, size_t size) {
-  set_has_reply();
-  if (reply_ == &::google::protobuf::internal::kEmptyString) {
-    reply_ = new ::std::string;
+inline void Reply::set_data(const void* value, size_t size) {
+  set_has_data();
+  if (data_ == &::google::protobuf::internal::kEmptyString) {
+    data_ = new ::std::string;
   }
-  reply_->assign(reinterpret_cast<const char*>(value), size);
+  data_->assign(reinterpret_cast<const char*>(value), size);
 }
-inline ::std::string* Reply::mutable_reply() {
-  set_has_reply();
-  if (reply_ == &::google::protobuf::internal::kEmptyString) {
-    reply_ = new ::std::string;
+inline ::std::string* Reply::mutable_data() {
+  set_has_data();
+  if (data_ == &::google::protobuf::internal::kEmptyString) {
+    data_ = new ::std::string;
   }
-  return reply_;
+  return data_;
 }
-inline ::std::string* Reply::release_reply() {
-  clear_has_reply();
-  if (reply_ == &::google::protobuf::internal::kEmptyString) {
+inline ::std::string* Reply::release_data() {
+  clear_has_data();
+  if (data_ == &::google::protobuf::internal::kEmptyString) {
     return NULL;
   } else {
-    ::std::string* temp = reply_;
-    reply_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    ::std::string* temp = data_;
+    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
     return temp;
   }
 }
-inline void Reply::set_allocated_reply(::std::string* reply) {
-  if (reply_ != &::google::protobuf::internal::kEmptyString) {
-    delete reply_;
+inline void Reply::set_allocated_data(::std::string* data) {
+  if (data_ != &::google::protobuf::internal::kEmptyString) {
+    delete data_;
   }
-  if (reply) {
-    set_has_reply();
-    reply_ = reply;
+  if (data) {
+    set_has_data();
+    data_ = data;
   } else {
-    clear_has_reply();
-    reply_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    clear_has_data();
+    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   }
 }
 
@@ -1511,73 +1511,73 @@ inline void Publish::set_allocated_event(::std::string* event) {
   }
 }
 
-// optional bytes content = 2;
-inline bool Publish::has_content() const {
+// optional bytes data = 2;
+inline bool Publish::has_data() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
-inline void Publish::set_has_content() {
+inline void Publish::set_has_data() {
   _has_bits_[0] |= 0x00000002u;
 }
-inline void Publish::clear_has_content() {
+inline void Publish::clear_has_data() {
   _has_bits_[0] &= ~0x00000002u;
 }
-inline void Publish::clear_content() {
-  if (content_ != &::google::protobuf::internal::kEmptyString) {
-    content_->clear();
+inline void Publish::clear_data() {
+  if (data_ != &::google::protobuf::internal::kEmptyString) {
+    data_->clear();
   }
-  clear_has_content();
+  clear_has_data();
 }
-inline const ::std::string& Publish::content() const {
-  return *content_;
+inline const ::std::string& Publish::data() const {
+  return *data_;
 }
-inline void Publish::set_content(const ::std::string& value) {
-  set_has_content();
-  if (content_ == &::google::protobuf::internal::kEmptyString) {
-    content_ = new ::std::string;
+inline void Publish::set_data(const ::std::string& value) {
+  set_has_data();
+  if (data_ == &::google::protobuf::internal::kEmptyString) {
+    data_ = new ::std::string;
   }
-  content_->assign(value);
+  data_->assign(value);
 }
-inline void Publish::set_content(const char* value) {
-  set_has_content();
-  if (content_ == &::google::protobuf::internal::kEmptyString) {
-    content_ = new ::std::string;
+inline void Publish::set_data(const char* value) {
+  set_has_data();
+  if (data_ == &::google::protobuf::internal::kEmptyString) {
+    data_ = new ::std::string;
   }
-  content_->assign(value);
+  data_->assign(value);
 }
-inline void Publish::set_content(const void* value, size_t size) {
-  set_has_content();
-  if (content_ == &::google::protobuf::internal::kEmptyString) {
-    content_ = new ::std::string;
+inline void Publish::set_data(const void* value, size_t size) {
+  set_has_data();
+  if (data_ == &::google::protobuf::internal::kEmptyString) {
+    data_ = new ::std::string;
   }
-  content_->assign(reinterpret_cast<const char*>(value), size);
+  data_->assign(reinterpret_cast<const char*>(value), size);
 }
-inline ::std::string* Publish::mutable_content() {
-  set_has_content();
-  if (content_ == &::google::protobuf::internal::kEmptyString) {
-    content_ = new ::std::string;
+inline ::std::string* Publish::mutable_data() {
+  set_has_data();
+  if (data_ == &::google::protobuf::internal::kEmptyString) {
+    data_ = new ::std::string;
   }
-  return content_;
+  return data_;
 }
-inline ::std::string* Publish::release_content() {
-  clear_has_content();
-  if (content_ == &::google::protobuf::internal::kEmptyString) {
+inline ::std::string* Publish::release_data() {
+  clear_has_data();
+  if (data_ == &::google::protobuf::internal::kEmptyString) {
     return NULL;
   } else {
-    ::std::string* temp = content_;
-    content_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    ::std::string* temp = data_;
+    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
     return temp;
   }
 }
-inline void Publish::set_allocated_content(::std::string* content) {
-  if (content_ != &::google::protobuf::internal::kEmptyString) {
-    delete content_;
+inline void Publish::set_allocated_data(::std::string* data) {
+  if (data_ != &::google::protobuf::internal::kEmptyString) {
+    delete data_;
   }
-  if (content) {
-    set_has_content();
-    content_ = content;
+  if (data) {
+    set_has_data();
+    data_ = data;
   } else {
-    clear_has_content();
-    content_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    clear_has_data();
+    data_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   }
 }
 
