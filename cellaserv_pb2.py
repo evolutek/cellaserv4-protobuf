@@ -14,7 +14,7 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='cellaserv.proto',
   package='cellaserv',
-  serialized_pb=b'\n\x0f\x63\x65llaserv.proto\x12\tcellaserv\"\x99\x01\n\x07Message\x12,\n\x04type\x18\x01 \x02(\x0e\x32\x1e.cellaserv.Message.MessageType\x12\x0f\n\x07\x63ontent\x18\x02 \x02(\x0c\"O\n\x0bMessageType\x12\x0c\n\x08Register\x10\x00\x12\x0b\n\x07Request\x10\x01\x12\t\n\x05Reply\x10\x02\x12\r\n\tSubscribe\x10\x03\x12\x0b\n\x07Publish\x10\x04\"0\n\x08Register\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\x16\n\x0eidentification\x18\x02 \x01(\t\"i\n\x07Request\x12\x14\n\x0cservice_name\x18\x01 \x02(\t\x12\x1e\n\x16service_identification\x18\x02 \x01(\t\x12\x0e\n\x06method\x18\x03 \x02(\t\x12\x0c\n\x04\x64\x61ta\x18\x04 \x01(\x0c\x12\n\n\x02id\x18\x63 \x02(\x04\"!\n\x05Reply\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\x0c\x12\n\n\x02id\x18\x63 \x02(\x04\"\x1a\n\tSubscribe\x12\r\n\x05\x65vent\x18\x01 \x02(\t\"&\n\x07Publish\x12\r\n\x05\x65vent\x18\x01 \x02(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\x0c')
+  serialized_pb=b'\n\x0f\x63\x65llaserv.proto\x12\tcellaserv\"\x99\x01\n\x07Message\x12,\n\x04type\x18\x01 \x02(\x0e\x32\x1e.cellaserv.Message.MessageType\x12\x0f\n\x07\x63ontent\x18\x02 \x02(\x0c\"O\n\x0bMessageType\x12\x0c\n\x08Register\x10\x00\x12\x0b\n\x07Request\x10\x01\x12\t\n\x05Reply\x10\x02\x12\r\n\tSubscribe\x10\x03\x12\x0b\n\x07Publish\x10\x04\"0\n\x08Register\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\x16\n\x0eidentification\x18\x02 \x01(\t\"i\n\x07Request\x12\x14\n\x0cservice_name\x18\x01 \x02(\t\x12\x1e\n\x16service_identification\x18\x02 \x01(\t\x12\x0e\n\x06method\x18\x03 \x02(\t\x12\x0c\n\x04\x64\x61ta\x18\x04 \x01(\x0c\x12\n\n\x02id\x18\x63 \x02(\x04\"\xf1\x01\n\x05Reply\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\x0c\x12%\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x16.cellaserv.Reply.Error\x12\n\n\x02id\x18\x63 \x02(\x04\x1a\xa6\x01\n\x05\x45rror\x12)\n\x04type\x18\x01 \x02(\x0e\x32\x1b.cellaserv.Reply.Error.Type\x12\x0c\n\x04what\x18\x02 \x01(\t\"d\n\x04Type\x12\x11\n\rNoSuchService\x10\x00\x12\x19\n\x15InvalidIdentification\x10\x01\x12\x10\n\x0cNoSuchMethod\x10\x02\x12\x10\n\x0c\x42\x61\x64\x41rguments\x10\x03\x12\n\n\x06\x43ustom\x10~\"\x1a\n\tSubscribe\x12\r\n\x05\x65vent\x18\x01 \x02(\t\"&\n\x07Publish\x12\r\n\x05\x65vent\x18\x01 \x02(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\x0c')
 
 
 
@@ -49,6 +49,39 @@ _MESSAGE_MESSAGETYPE = _descriptor.EnumDescriptor(
   options=None,
   serialized_start=105,
   serialized_end=184,
+)
+
+_REPLY_ERROR_TYPE = _descriptor.EnumDescriptor(
+  name='Type',
+  full_name='cellaserv.Reply.Error.Type',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='NoSuchService', index=0, number=0,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='InvalidIdentification', index=1, number=1,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='NoSuchMethod', index=2, number=2,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='BadArguments', index=3, number=3,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Custom', index=4, number=126,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=485,
+  serialized_end=585,
 )
 
 
@@ -179,6 +212,41 @@ _REQUEST = _descriptor.Descriptor(
 )
 
 
+_REPLY_ERROR = _descriptor.Descriptor(
+  name='Error',
+  full_name='cellaserv.Reply.Error',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='type', full_name='cellaserv.Reply.Error.type', index=0,
+      number=1, type=14, cpp_type=8, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='what', full_name='cellaserv.Reply.Error.what', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _REPLY_ERROR_TYPE,
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  serialized_start=419,
+  serialized_end=585,
+)
+
 _REPLY = _descriptor.Descriptor(
   name='Reply',
   full_name='cellaserv.Reply',
@@ -194,7 +262,14 @@ _REPLY = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='id', full_name='cellaserv.Reply.id', index=1,
+      name='error', full_name='cellaserv.Reply.error', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='id', full_name='cellaserv.Reply.id', index=2,
       number=99, type=4, cpp_type=4, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -203,14 +278,14 @@ _REPLY = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[],
+  nested_types=[_REPLY_ERROR, ],
   enum_types=[
   ],
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=343,
-  serialized_end=376,
+  serialized_start=344,
+  serialized_end=585,
 )
 
 
@@ -237,8 +312,8 @@ _SUBSCRIBE = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=378,
-  serialized_end=404,
+  serialized_start=587,
+  serialized_end=613,
 )
 
 
@@ -272,12 +347,16 @@ _PUBLISH = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=406,
-  serialized_end=444,
+  serialized_start=615,
+  serialized_end=653,
 )
 
 _MESSAGE.fields_by_name['type'].enum_type = _MESSAGE_MESSAGETYPE
 _MESSAGE_MESSAGETYPE.containing_type = _MESSAGE;
+_REPLY_ERROR.fields_by_name['type'].enum_type = _REPLY_ERROR_TYPE
+_REPLY_ERROR.containing_type = _REPLY;
+_REPLY_ERROR_TYPE.containing_type = _REPLY_ERROR;
+_REPLY.fields_by_name['error'].message_type = _REPLY_ERROR
 DESCRIPTOR.message_types_by_name['Message'] = _MESSAGE
 DESCRIPTOR.message_types_by_name['Register'] = _REGISTER
 DESCRIPTOR.message_types_by_name['Request'] = _REQUEST
@@ -309,6 +388,13 @@ class Request(_message.Message):
 @_metaclass.decorator
 class Reply(_message.Message):
   __metaclass__ = _reflection.GeneratedProtocolMessageType
+
+  @_metaclass.decorator
+  class Error(_message.Message):
+    __metaclass__ = _reflection.GeneratedProtocolMessageType
+    DESCRIPTOR = _REPLY_ERROR
+
+    # @@protoc_insertion_point(class_scope:cellaserv.Reply.Error)
   DESCRIPTOR = _REPLY
 
   # @@protoc_insertion_point(class_scope:cellaserv.Reply)

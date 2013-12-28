@@ -38,6 +38,7 @@ class Message;
 class Register;
 class Request;
 class Reply;
+class Reply_Error;
 class Subscribe;
 class Publish;
 
@@ -62,6 +63,28 @@ inline bool Message_MessageType_Parse(
     const ::std::string& name, Message_MessageType* value) {
   return ::google::protobuf::internal::ParseNamedEnum<Message_MessageType>(
     Message_MessageType_descriptor(), name, value);
+}
+enum Reply_Error_Type {
+  Reply_Error_Type_NoSuchService = 0,
+  Reply_Error_Type_InvalidIdentification = 1,
+  Reply_Error_Type_NoSuchMethod = 2,
+  Reply_Error_Type_BadArguments = 3,
+  Reply_Error_Type_Custom = 126
+};
+bool Reply_Error_Type_IsValid(int value);
+const Reply_Error_Type Reply_Error_Type_Type_MIN = Reply_Error_Type_NoSuchService;
+const Reply_Error_Type Reply_Error_Type_Type_MAX = Reply_Error_Type_Custom;
+const int Reply_Error_Type_Type_ARRAYSIZE = Reply_Error_Type_Type_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* Reply_Error_Type_descriptor();
+inline const ::std::string& Reply_Error_Type_Name(Reply_Error_Type value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    Reply_Error_Type_descriptor(), value);
+}
+inline bool Reply_Error_Type_Parse(
+    const ::std::string& name, Reply_Error_Type* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<Reply_Error_Type>(
+    Reply_Error_Type_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -433,6 +456,130 @@ class Request : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
+class Reply_Error : public ::google::protobuf::Message {
+ public:
+  Reply_Error();
+  virtual ~Reply_Error();
+
+  Reply_Error(const Reply_Error& from);
+
+  inline Reply_Error& operator=(const Reply_Error& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Reply_Error& default_instance();
+
+  void Swap(Reply_Error* other);
+
+  // implements Message ----------------------------------------------
+
+  Reply_Error* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const Reply_Error& from);
+  void MergeFrom(const Reply_Error& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  typedef Reply_Error_Type Type;
+  static const Type NoSuchService = Reply_Error_Type_NoSuchService;
+  static const Type InvalidIdentification = Reply_Error_Type_InvalidIdentification;
+  static const Type NoSuchMethod = Reply_Error_Type_NoSuchMethod;
+  static const Type BadArguments = Reply_Error_Type_BadArguments;
+  static const Type Custom = Reply_Error_Type_Custom;
+  static inline bool Type_IsValid(int value) {
+    return Reply_Error_Type_IsValid(value);
+  }
+  static const Type Type_MIN =
+    Reply_Error_Type_Type_MIN;
+  static const Type Type_MAX =
+    Reply_Error_Type_Type_MAX;
+  static const int Type_ARRAYSIZE =
+    Reply_Error_Type_Type_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor*
+  Type_descriptor() {
+    return Reply_Error_Type_descriptor();
+  }
+  static inline const ::std::string& Type_Name(Type value) {
+    return Reply_Error_Type_Name(value);
+  }
+  static inline bool Type_Parse(const ::std::string& name,
+      Type* value) {
+    return Reply_Error_Type_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  // required .cellaserv.Reply.Error.Type type = 1;
+  inline bool has_type() const;
+  inline void clear_type();
+  static const int kTypeFieldNumber = 1;
+  inline ::cellaserv::Reply_Error_Type type() const;
+  inline void set_type(::cellaserv::Reply_Error_Type value);
+
+  // optional string what = 2;
+  inline bool has_what() const;
+  inline void clear_what();
+  static const int kWhatFieldNumber = 2;
+  inline const ::std::string& what() const;
+  inline void set_what(const ::std::string& value);
+  inline void set_what(const char* value);
+  inline void set_what(const char* value, size_t size);
+  inline ::std::string* mutable_what();
+  inline ::std::string* release_what();
+  inline void set_allocated_what(::std::string* what);
+
+  // @@protoc_insertion_point(class_scope:cellaserv.Reply.Error)
+ private:
+  inline void set_has_type();
+  inline void clear_has_type();
+  inline void set_has_what();
+  inline void clear_has_what();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::std::string* what_;
+  int type_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+
+  friend void  protobuf_AddDesc_cellaserv_2eproto();
+  friend void protobuf_AssignDesc_cellaserv_2eproto();
+  friend void protobuf_ShutdownFile_cellaserv_2eproto();
+
+  void InitAsDefaultInstance();
+  static Reply_Error* default_instance_;
+};
+// -------------------------------------------------------------------
+
 class Reply : public ::google::protobuf::Message {
  public:
   Reply();
@@ -485,6 +632,8 @@ class Reply : public ::google::protobuf::Message {
 
   // nested types ----------------------------------------------------
 
+  typedef Reply_Error Error;
+
   // accessors -------------------------------------------------------
 
   // optional bytes data = 1;
@@ -499,6 +648,15 @@ class Reply : public ::google::protobuf::Message {
   inline ::std::string* release_data();
   inline void set_allocated_data(::std::string* data);
 
+  // optional .cellaserv.Reply.Error error = 2;
+  inline bool has_error() const;
+  inline void clear_error();
+  static const int kErrorFieldNumber = 2;
+  inline const ::cellaserv::Reply_Error& error() const;
+  inline ::cellaserv::Reply_Error* mutable_error();
+  inline ::cellaserv::Reply_Error* release_error();
+  inline void set_allocated_error(::cellaserv::Reply_Error* error);
+
   // required uint64 id = 99;
   inline bool has_id() const;
   inline void clear_id();
@@ -510,16 +668,19 @@ class Reply : public ::google::protobuf::Message {
  private:
   inline void set_has_data();
   inline void clear_has_data();
+  inline void set_has_error();
+  inline void clear_has_error();
   inline void set_has_id();
   inline void clear_has_id();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::std::string* data_;
+  ::cellaserv::Reply_Error* error_;
   ::google::protobuf::uint64 id_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
 
   friend void  protobuf_AddDesc_cellaserv_2eproto();
   friend void protobuf_AssignDesc_cellaserv_2eproto();
@@ -1269,6 +1430,103 @@ inline void Request::set_id(::google::protobuf::uint64 value) {
 
 // -------------------------------------------------------------------
 
+// Reply_Error
+
+// required .cellaserv.Reply.Error.Type type = 1;
+inline bool Reply_Error::has_type() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Reply_Error::set_has_type() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Reply_Error::clear_has_type() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void Reply_Error::clear_type() {
+  type_ = 0;
+  clear_has_type();
+}
+inline ::cellaserv::Reply_Error_Type Reply_Error::type() const {
+  return static_cast< ::cellaserv::Reply_Error_Type >(type_);
+}
+inline void Reply_Error::set_type(::cellaserv::Reply_Error_Type value) {
+  assert(::cellaserv::Reply_Error_Type_IsValid(value));
+  set_has_type();
+  type_ = value;
+}
+
+// optional string what = 2;
+inline bool Reply_Error::has_what() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Reply_Error::set_has_what() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Reply_Error::clear_has_what() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void Reply_Error::clear_what() {
+  if (what_ != &::google::protobuf::internal::kEmptyString) {
+    what_->clear();
+  }
+  clear_has_what();
+}
+inline const ::std::string& Reply_Error::what() const {
+  return *what_;
+}
+inline void Reply_Error::set_what(const ::std::string& value) {
+  set_has_what();
+  if (what_ == &::google::protobuf::internal::kEmptyString) {
+    what_ = new ::std::string;
+  }
+  what_->assign(value);
+}
+inline void Reply_Error::set_what(const char* value) {
+  set_has_what();
+  if (what_ == &::google::protobuf::internal::kEmptyString) {
+    what_ = new ::std::string;
+  }
+  what_->assign(value);
+}
+inline void Reply_Error::set_what(const char* value, size_t size) {
+  set_has_what();
+  if (what_ == &::google::protobuf::internal::kEmptyString) {
+    what_ = new ::std::string;
+  }
+  what_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* Reply_Error::mutable_what() {
+  set_has_what();
+  if (what_ == &::google::protobuf::internal::kEmptyString) {
+    what_ = new ::std::string;
+  }
+  return what_;
+}
+inline ::std::string* Reply_Error::release_what() {
+  clear_has_what();
+  if (what_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = what_;
+    what_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
+inline void Reply_Error::set_allocated_what(::std::string* what) {
+  if (what_ != &::google::protobuf::internal::kEmptyString) {
+    delete what_;
+  }
+  if (what) {
+    set_has_what();
+    what_ = what;
+  } else {
+    clear_has_what();
+    what_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  }
+}
+
+// -------------------------------------------------------------------
+
 // Reply
 
 // optional bytes data = 1;
@@ -1341,15 +1599,53 @@ inline void Reply::set_allocated_data(::std::string* data) {
   }
 }
 
-// required uint64 id = 99;
-inline bool Reply::has_id() const {
+// optional .cellaserv.Reply.Error error = 2;
+inline bool Reply::has_error() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
-inline void Reply::set_has_id() {
+inline void Reply::set_has_error() {
   _has_bits_[0] |= 0x00000002u;
 }
-inline void Reply::clear_has_id() {
+inline void Reply::clear_has_error() {
   _has_bits_[0] &= ~0x00000002u;
+}
+inline void Reply::clear_error() {
+  if (error_ != NULL) error_->::cellaserv::Reply_Error::Clear();
+  clear_has_error();
+}
+inline const ::cellaserv::Reply_Error& Reply::error() const {
+  return error_ != NULL ? *error_ : *default_instance_->error_;
+}
+inline ::cellaserv::Reply_Error* Reply::mutable_error() {
+  set_has_error();
+  if (error_ == NULL) error_ = new ::cellaserv::Reply_Error;
+  return error_;
+}
+inline ::cellaserv::Reply_Error* Reply::release_error() {
+  clear_has_error();
+  ::cellaserv::Reply_Error* temp = error_;
+  error_ = NULL;
+  return temp;
+}
+inline void Reply::set_allocated_error(::cellaserv::Reply_Error* error) {
+  delete error_;
+  error_ = error;
+  if (error) {
+    set_has_error();
+  } else {
+    clear_has_error();
+  }
+}
+
+// required uint64 id = 99;
+inline bool Reply::has_id() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void Reply::set_has_id() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void Reply::clear_has_id() {
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void Reply::clear_id() {
   id_ = GOOGLE_ULONGLONG(0);
@@ -1593,6 +1889,10 @@ namespace protobuf {
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::cellaserv::Message_MessageType>() {
   return ::cellaserv::Message_MessageType_descriptor();
+}
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::cellaserv::Reply_Error_Type>() {
+  return ::cellaserv::Reply_Error_Type_descriptor();
 }
 
 }  // namespace google

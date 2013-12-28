@@ -55,6 +55,48 @@ func (x *Message_MessageType) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+type Reply_Error_Type int32
+
+const (
+	Reply_Error_NoSuchService         Reply_Error_Type = 0
+	Reply_Error_InvalidIdentification Reply_Error_Type = 1
+	Reply_Error_NoSuchMethod          Reply_Error_Type = 2
+	Reply_Error_BadArguments          Reply_Error_Type = 3
+	Reply_Error_Custom                Reply_Error_Type = 126
+)
+
+var Reply_Error_Type_name = map[int32]string{
+	0:   "NoSuchService",
+	1:   "InvalidIdentification",
+	2:   "NoSuchMethod",
+	3:   "BadArguments",
+	126: "Custom",
+}
+var Reply_Error_Type_value = map[string]int32{
+	"NoSuchService":         0,
+	"InvalidIdentification": 1,
+	"NoSuchMethod":          2,
+	"BadArguments":          3,
+	"Custom":                126,
+}
+
+func (x Reply_Error_Type) Enum() *Reply_Error_Type {
+	p := new(Reply_Error_Type)
+	*p = x
+	return p
+}
+func (x Reply_Error_Type) String() string {
+	return proto.EnumName(Reply_Error_Type_name, int32(x))
+}
+func (x *Reply_Error_Type) UnmarshalJSON(data []byte) error {
+	value, err := proto.UnmarshalJSONEnum(Reply_Error_Type_value, data, "Reply_Error_Type")
+	if err != nil {
+		return err
+	}
+	*x = Reply_Error_Type(value)
+	return nil
+}
+
 type Message struct {
 	Type             *Message_MessageType `protobuf:"varint,1,req,name=type,enum=cellaserv.Message_MessageType" json:"type,omitempty"`
 	Content          []byte               `protobuf:"bytes,2,req,name=content" json:"content,omitempty"`
@@ -152,9 +194,10 @@ func (m *Request) GetId() uint64 {
 }
 
 type Reply struct {
-	Data             []byte  `protobuf:"bytes,1,opt,name=data" json:"data,omitempty"`
-	Id               *uint64 `protobuf:"varint,99,req,name=id" json:"id,omitempty"`
-	XXX_unrecognized []byte  `json:"-"`
+	Data             []byte       `protobuf:"bytes,1,opt,name=data" json:"data,omitempty"`
+	Error            *Reply_Error `protobuf:"bytes,2,opt,name=error" json:"error,omitempty"`
+	Id               *uint64      `protobuf:"varint,99,req,name=id" json:"id,omitempty"`
+	XXX_unrecognized []byte       `json:"-"`
 }
 
 func (m *Reply) Reset()         { *m = Reply{} }
@@ -168,11 +211,42 @@ func (m *Reply) GetData() []byte {
 	return nil
 }
 
+func (m *Reply) GetError() *Reply_Error {
+	if m != nil {
+		return m.Error
+	}
+	return nil
+}
+
 func (m *Reply) GetId() uint64 {
 	if m != nil && m.Id != nil {
 		return *m.Id
 	}
 	return 0
+}
+
+type Reply_Error struct {
+	Type             *Reply_Error_Type `protobuf:"varint,1,req,name=type,enum=cellaserv.Reply_Error_Type" json:"type,omitempty"`
+	What             *string           `protobuf:"bytes,2,opt,name=what" json:"what,omitempty"`
+	XXX_unrecognized []byte            `json:"-"`
+}
+
+func (m *Reply_Error) Reset()         { *m = Reply_Error{} }
+func (m *Reply_Error) String() string { return proto.CompactTextString(m) }
+func (*Reply_Error) ProtoMessage()    {}
+
+func (m *Reply_Error) GetType() Reply_Error_Type {
+	if m != nil && m.Type != nil {
+		return *m.Type
+	}
+	return Reply_Error_NoSuchService
+}
+
+func (m *Reply_Error) GetWhat() string {
+	if m != nil && m.What != nil {
+		return *m.What
+	}
+	return ""
 }
 
 type Subscribe struct {
@@ -217,4 +291,5 @@ func (m *Publish) GetData() []byte {
 
 func init() {
 	proto.RegisterEnum("cellaserv.Message_MessageType", Message_MessageType_name, Message_MessageType_value)
+	proto.RegisterEnum("cellaserv.Reply_Error_Type", Reply_Error_Type_name, Reply_Error_Type_value)
 }

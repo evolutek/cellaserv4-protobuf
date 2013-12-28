@@ -33,6 +33,10 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* Reply_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Reply_reflection_ = NULL;
+const ::google::protobuf::Descriptor* Reply_Error_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  Reply_Error_reflection_ = NULL;
+const ::google::protobuf::EnumDescriptor* Reply_Error_Type_descriptor_ = NULL;
 const ::google::protobuf::Descriptor* Subscribe_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Subscribe_reflection_ = NULL;
@@ -102,8 +106,9 @@ void protobuf_AssignDesc_cellaserv_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Request));
   Reply_descriptor_ = file->message_type(3);
-  static const int Reply_offsets_[2] = {
+  static const int Reply_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Reply, data_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Reply, error_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Reply, id_),
   };
   Reply_reflection_ =
@@ -117,6 +122,23 @@ void protobuf_AssignDesc_cellaserv_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Reply));
+  Reply_Error_descriptor_ = Reply_descriptor_->nested_type(0);
+  static const int Reply_Error_offsets_[2] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Reply_Error, type_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Reply_Error, what_),
+  };
+  Reply_Error_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      Reply_Error_descriptor_,
+      Reply_Error::default_instance_,
+      Reply_Error_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Reply_Error, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Reply_Error, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(Reply_Error));
+  Reply_Error_Type_descriptor_ = Reply_Error_descriptor_->enum_type(0);
   Subscribe_descriptor_ = file->message_type(4);
   static const int Subscribe_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Subscribe, event_),
@@ -169,6 +191,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     Reply_descriptor_, &Reply::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    Reply_Error_descriptor_, &Reply_Error::default_instance());
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     Subscribe_descriptor_, &Subscribe::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     Publish_descriptor_, &Publish::default_instance());
@@ -185,6 +209,8 @@ void protobuf_ShutdownFile_cellaserv_2eproto() {
   delete Request_reflection_;
   delete Reply::default_instance_;
   delete Reply_reflection_;
+  delete Reply_Error::default_instance_;
+  delete Reply_Error_reflection_;
   delete Subscribe::default_instance_;
   delete Subscribe_reflection_;
   delete Publish::default_instance_;
@@ -206,22 +232,29 @@ void protobuf_AddDesc_cellaserv_2eproto() {
     "name\030\001 \002(\t\022\026\n\016identification\030\002 \001(\t\"i\n\007Re"
     "quest\022\024\n\014service_name\030\001 \002(\t\022\036\n\026service_i"
     "dentification\030\002 \001(\t\022\016\n\006method\030\003 \002(\t\022\014\n\004d"
-    "ata\030\004 \001(\014\022\n\n\002id\030c \002(\004\"!\n\005Reply\022\014\n\004data\030\001"
-    " \001(\014\022\n\n\002id\030c \002(\004\"\032\n\tSubscribe\022\r\n\005event\030\001"
-    " \002(\t\"&\n\007Publish\022\r\n\005event\030\001 \002(\t\022\014\n\004data\030\002"
-    " \001(\014", 444);
+    "ata\030\004 \001(\014\022\n\n\002id\030c \002(\004\"\361\001\n\005Reply\022\014\n\004data\030"
+    "\001 \001(\014\022%\n\005error\030\002 \001(\0132\026.cellaserv.Reply.E"
+    "rror\022\n\n\002id\030c \002(\004\032\246\001\n\005Error\022)\n\004type\030\001 \002(\016"
+    "2\033.cellaserv.Reply.Error.Type\022\014\n\004what\030\002 "
+    "\001(\t\"d\n\004Type\022\021\n\rNoSuchService\020\000\022\031\n\025Invali"
+    "dIdentification\020\001\022\020\n\014NoSuchMethod\020\002\022\020\n\014B"
+    "adArguments\020\003\022\n\n\006Custom\020~\"\032\n\tSubscribe\022\r"
+    "\n\005event\030\001 \002(\t\"&\n\007Publish\022\r\n\005event\030\001 \002(\t\022"
+    "\014\n\004data\030\002 \001(\014", 653);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "cellaserv.proto", &protobuf_RegisterTypes);
   Message::default_instance_ = new Message();
   Register::default_instance_ = new Register();
   Request::default_instance_ = new Request();
   Reply::default_instance_ = new Reply();
+  Reply_Error::default_instance_ = new Reply_Error();
   Subscribe::default_instance_ = new Subscribe();
   Publish::default_instance_ = new Publish();
   Message::default_instance_->InitAsDefaultInstance();
   Register::default_instance_->InitAsDefaultInstance();
   Request::default_instance_->InitAsDefaultInstance();
   Reply::default_instance_->InitAsDefaultInstance();
+  Reply_Error::default_instance_->InitAsDefaultInstance();
   Subscribe::default_instance_->InitAsDefaultInstance();
   Publish::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_cellaserv_2eproto);
@@ -1237,8 +1270,308 @@ void Request::Swap(Request* other) {
 
 // ===================================================================
 
+const ::google::protobuf::EnumDescriptor* Reply_Error_Type_descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return Reply_Error_Type_descriptor_;
+}
+bool Reply_Error_Type_IsValid(int value) {
+  switch(value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 126:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#ifndef _MSC_VER
+const Reply_Error_Type Reply_Error::NoSuchService;
+const Reply_Error_Type Reply_Error::InvalidIdentification;
+const Reply_Error_Type Reply_Error::NoSuchMethod;
+const Reply_Error_Type Reply_Error::BadArguments;
+const Reply_Error_Type Reply_Error::Custom;
+const Reply_Error_Type Reply_Error::Type_MIN;
+const Reply_Error_Type Reply_Error::Type_MAX;
+const int Reply_Error::Type_ARRAYSIZE;
+#endif  // _MSC_VER
+#ifndef _MSC_VER
+const int Reply_Error::kTypeFieldNumber;
+const int Reply_Error::kWhatFieldNumber;
+#endif  // !_MSC_VER
+
+Reply_Error::Reply_Error()
+  : ::google::protobuf::Message() {
+  SharedCtor();
+}
+
+void Reply_Error::InitAsDefaultInstance() {
+}
+
+Reply_Error::Reply_Error(const Reply_Error& from)
+  : ::google::protobuf::Message() {
+  SharedCtor();
+  MergeFrom(from);
+}
+
+void Reply_Error::SharedCtor() {
+  _cached_size_ = 0;
+  type_ = 0;
+  what_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+Reply_Error::~Reply_Error() {
+  SharedDtor();
+}
+
+void Reply_Error::SharedDtor() {
+  if (what_ != &::google::protobuf::internal::kEmptyString) {
+    delete what_;
+  }
+  if (this != default_instance_) {
+  }
+}
+
+void Reply_Error::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* Reply_Error::descriptor() {
+  protobuf_AssignDescriptorsOnce();
+  return Reply_Error_descriptor_;
+}
+
+const Reply_Error& Reply_Error::default_instance() {
+  if (default_instance_ == NULL) protobuf_AddDesc_cellaserv_2eproto();
+  return *default_instance_;
+}
+
+Reply_Error* Reply_Error::default_instance_ = NULL;
+
+Reply_Error* Reply_Error::New() const {
+  return new Reply_Error;
+}
+
+void Reply_Error::Clear() {
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    type_ = 0;
+    if (has_what()) {
+      if (what_ != &::google::protobuf::internal::kEmptyString) {
+        what_->clear();
+      }
+    }
+  }
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
+}
+
+bool Reply_Error::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
+  ::google::protobuf::uint32 tag;
+  while ((tag = input->ReadTag()) != 0) {
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // required .cellaserv.Reply.Error.Type type = 1;
+      case 1: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          if (::cellaserv::Reply_Error_Type_IsValid(value)) {
+            set_type(static_cast< ::cellaserv::Reply_Error_Type >(value));
+          } else {
+            mutable_unknown_fields()->AddVarint(1, value);
+          }
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(18)) goto parse_what;
+        break;
+      }
+
+      // optional string what = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_what:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_what()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+            this->what().data(), this->what().length(),
+            ::google::protobuf::internal::WireFormat::PARSE);
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectAtEnd()) return true;
+        break;
+      }
+
+      default: {
+      handle_uninterpreted:
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          return true;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+  return true;
+#undef DO_
+}
+
+void Reply_Error::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // required .cellaserv.Reply.Error.Type type = 1;
+  if (has_type()) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      1, this->type(), output);
+  }
+
+  // optional string what = 2;
+  if (has_what()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->what().data(), this->what().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      2, this->what(), output);
+  }
+
+  if (!unknown_fields().empty()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        unknown_fields(), output);
+  }
+}
+
+::google::protobuf::uint8* Reply_Error::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // required .cellaserv.Reply.Error.Type type = 1;
+  if (has_type()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
+      1, this->type(), target);
+  }
+
+  // optional string what = 2;
+  if (has_what()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->what().data(), this->what().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        2, this->what(), target);
+  }
+
+  if (!unknown_fields().empty()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        unknown_fields(), target);
+  }
+  return target;
+}
+
+int Reply_Error::ByteSize() const {
+  int total_size = 0;
+
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // required .cellaserv.Reply.Error.Type type = 1;
+    if (has_type()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
+    }
+
+    // optional string what = 2;
+    if (has_what()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->what());
+    }
+
+  }
+  if (!unknown_fields().empty()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        unknown_fields());
+  }
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void Reply_Error::MergeFrom(const ::google::protobuf::Message& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  const Reply_Error* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const Reply_Error*>(
+      &from);
+  if (source == NULL) {
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+    MergeFrom(*source);
+  }
+}
+
+void Reply_Error::MergeFrom(const Reply_Error& from) {
+  GOOGLE_CHECK_NE(&from, this);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_type()) {
+      set_type(from.type());
+    }
+    if (from.has_what()) {
+      set_what(from.what());
+    }
+  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
+}
+
+void Reply_Error::CopyFrom(const ::google::protobuf::Message& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Reply_Error::CopyFrom(const Reply_Error& from) {
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Reply_Error::IsInitialized() const {
+  if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
+
+  return true;
+}
+
+void Reply_Error::Swap(Reply_Error* other) {
+  if (other != this) {
+    std::swap(type_, other->type_);
+    std::swap(what_, other->what_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
+}
+
+::google::protobuf::Metadata Reply_Error::GetMetadata() const {
+  protobuf_AssignDescriptorsOnce();
+  ::google::protobuf::Metadata metadata;
+  metadata.descriptor = Reply_Error_descriptor_;
+  metadata.reflection = Reply_Error_reflection_;
+  return metadata;
+}
+
+
+// -------------------------------------------------------------------
+
 #ifndef _MSC_VER
 const int Reply::kDataFieldNumber;
+const int Reply::kErrorFieldNumber;
 const int Reply::kIdFieldNumber;
 #endif  // !_MSC_VER
 
@@ -1248,6 +1581,7 @@ Reply::Reply()
 }
 
 void Reply::InitAsDefaultInstance() {
+  error_ = const_cast< ::cellaserv::Reply_Error*>(&::cellaserv::Reply_Error::default_instance());
 }
 
 Reply::Reply(const Reply& from)
@@ -1259,6 +1593,7 @@ Reply::Reply(const Reply& from)
 void Reply::SharedCtor() {
   _cached_size_ = 0;
   data_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  error_ = NULL;
   id_ = GOOGLE_ULONGLONG(0);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -1272,6 +1607,7 @@ void Reply::SharedDtor() {
     delete data_;
   }
   if (this != default_instance_) {
+    delete error_;
   }
 }
 
@@ -1303,6 +1639,9 @@ void Reply::Clear() {
         data_->clear();
       }
     }
+    if (has_error()) {
+      if (error_ != NULL) error_->::cellaserv::Reply_Error::Clear();
+    }
     id_ = GOOGLE_ULONGLONG(0);
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -1321,6 +1660,20 @@ bool Reply::MergePartialFromCodedStream(
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
                 input, this->mutable_data()));
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(18)) goto parse_error;
+        break;
+      }
+
+      // optional .cellaserv.Reply.Error error = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_error:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_error()));
         } else {
           goto handle_uninterpreted;
         }
@@ -1368,6 +1721,12 @@ void Reply::SerializeWithCachedSizes(
       1, this->data(), output);
   }
 
+  // optional .cellaserv.Reply.Error error = 2;
+  if (has_error()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      2, this->error(), output);
+  }
+
   // required uint64 id = 99;
   if (has_id()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(99, this->id(), output);
@@ -1386,6 +1745,13 @@ void Reply::SerializeWithCachedSizes(
     target =
       ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
         1, this->data(), target);
+  }
+
+  // optional .cellaserv.Reply.Error error = 2;
+  if (has_error()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteMessageNoVirtualToArray(
+        2, this->error(), target);
   }
 
   // required uint64 id = 99;
@@ -1409,6 +1775,13 @@ int Reply::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::BytesSize(
           this->data());
+    }
+
+    // optional .cellaserv.Reply.Error error = 2;
+    if (has_error()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->error());
     }
 
     // required uint64 id = 99;
@@ -1448,6 +1821,9 @@ void Reply::MergeFrom(const Reply& from) {
     if (from.has_data()) {
       set_data(from.data());
     }
+    if (from.has_error()) {
+      mutable_error()->::cellaserv::Reply_Error::MergeFrom(from.error());
+    }
     if (from.has_id()) {
       set_id(from.id());
     }
@@ -1468,14 +1844,18 @@ void Reply::CopyFrom(const Reply& from) {
 }
 
 bool Reply::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000002) != 0x00000002) return false;
+  if ((_has_bits_[0] & 0x00000004) != 0x00000004) return false;
 
+  if (has_error()) {
+    if (!this->error().IsInitialized()) return false;
+  }
   return true;
 }
 
 void Reply::Swap(Reply* other) {
   if (other != this) {
     std::swap(data_, other->data_);
+    std::swap(error_, other->error_);
     std::swap(id_, other->id_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);

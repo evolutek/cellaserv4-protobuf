@@ -26,7 +26,20 @@ message Request {
 }
 
 message Reply {
+    message Error {
+        enum Type {
+            NoSuchService = 0;
+            InvalidIdentification = 1;
+            NoSuchMethod = 2;
+            BadArguments = 3;
+            Custom = 126;
+        }
+        required Type type = 1;
+        optional string what = 2;
+    }
+
     optional bytes data = 1;
+    optional Error error = 2;
     required uint64 id = 99;
 }
 
