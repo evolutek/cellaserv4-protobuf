@@ -1,5 +1,7 @@
-IN = cellaserv.proto
-OUT = cellaserv.pb.go cellaserv_pb2.py cpp/cellaserv.pb.cc cpp/cellaserv.pb.h
+IN = cellaserv.proto cellaserv_log.proto
+OUT = cellaserv.pb.go \
+      cellaserv_pb2.py \
+      cpp/cellaserv.pb.cc cpp/cellaserv.pb.h
 
 all: $(OUT)
 

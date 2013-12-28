@@ -1,0 +1,8 @@
+package cellaserv;
+
+import "cellaserv.proto";
+
+message LogMessage {
+    required string sender = 1; // "addr:port"
+    required bytes content = 2; // raw log
+}
