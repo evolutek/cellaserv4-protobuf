@@ -62,6 +62,7 @@ const (
 	Reply_Error_InvalidIdentification Reply_Error_Type = 1
 	Reply_Error_NoSuchMethod          Reply_Error_Type = 2
 	Reply_Error_BadArguments          Reply_Error_Type = 3
+	Reply_Error_Timeout               Reply_Error_Type = 4
 	Reply_Error_Custom                Reply_Error_Type = 126
 )
 
@@ -70,6 +71,7 @@ var Reply_Error_Type_name = map[int32]string{
 	1:   "InvalidIdentification",
 	2:   "NoSuchMethod",
 	3:   "BadArguments",
+	4:   "Timeout",
 	126: "Custom",
 }
 var Reply_Error_Type_value = map[string]int32{
@@ -77,6 +79,7 @@ var Reply_Error_Type_value = map[string]int32{
 	"InvalidIdentification": 1,
 	"NoSuchMethod":          2,
 	"BadArguments":          3,
+	"Timeout":               4,
 	"Custom":                126,
 }
 

@@ -14,7 +14,7 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='cellaserv.proto',
   package='cellaserv',
-  serialized_pb=b'\n\x0f\x63\x65llaserv.proto\x12\tcellaserv\"\x99\x01\n\x07Message\x12,\n\x04type\x18\x01 \x02(\x0e\x32\x1e.cellaserv.Message.MessageType\x12\x0f\n\x07\x63ontent\x18\x02 \x02(\x0c\"O\n\x0bMessageType\x12\x0c\n\x08Register\x10\x00\x12\x0b\n\x07Request\x10\x01\x12\t\n\x05Reply\x10\x02\x12\r\n\tSubscribe\x10\x03\x12\x0b\n\x07Publish\x10\x04\"0\n\x08Register\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\x16\n\x0eidentification\x18\x02 \x01(\t\"i\n\x07Request\x12\x14\n\x0cservice_name\x18\x01 \x02(\t\x12\x1e\n\x16service_identification\x18\x02 \x01(\t\x12\x0e\n\x06method\x18\x03 \x02(\t\x12\x0c\n\x04\x64\x61ta\x18\x04 \x01(\x0c\x12\n\n\x02id\x18\x63 \x02(\x04\"\xf1\x01\n\x05Reply\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\x0c\x12%\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x16.cellaserv.Reply.Error\x12\n\n\x02id\x18\x63 \x02(\x04\x1a\xa6\x01\n\x05\x45rror\x12)\n\x04type\x18\x01 \x02(\x0e\x32\x1b.cellaserv.Reply.Error.Type\x12\x0c\n\x04what\x18\x02 \x01(\t\"d\n\x04Type\x12\x11\n\rNoSuchService\x10\x00\x12\x19\n\x15InvalidIdentification\x10\x01\x12\x10\n\x0cNoSuchMethod\x10\x02\x12\x10\n\x0c\x42\x61\x64\x41rguments\x10\x03\x12\n\n\x06\x43ustom\x10~\"\x1a\n\tSubscribe\x12\r\n\x05\x65vent\x18\x01 \x02(\t\"&\n\x07Publish\x12\r\n\x05\x65vent\x18\x01 \x02(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\x0c')
+  serialized_pb=b'\n\x0f\x63\x65llaserv.proto\x12\tcellaserv\"\x99\x01\n\x07Message\x12,\n\x04type\x18\x01 \x02(\x0e\x32\x1e.cellaserv.Message.MessageType\x12\x0f\n\x07\x63ontent\x18\x02 \x02(\x0c\"O\n\x0bMessageType\x12\x0c\n\x08Register\x10\x00\x12\x0b\n\x07Request\x10\x01\x12\t\n\x05Reply\x10\x02\x12\r\n\tSubscribe\x10\x03\x12\x0b\n\x07Publish\x10\x04\"0\n\x08Register\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\x16\n\x0eidentification\x18\x02 \x01(\t\"i\n\x07Request\x12\x14\n\x0cservice_name\x18\x01 \x02(\t\x12\x1e\n\x16service_identification\x18\x02 \x01(\t\x12\x0e\n\x06method\x18\x03 \x02(\t\x12\x0c\n\x04\x64\x61ta\x18\x04 \x01(\x0c\x12\n\n\x02id\x18\x63 \x02(\x04\"\xfe\x01\n\x05Reply\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\x0c\x12%\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x16.cellaserv.Reply.Error\x12\n\n\x02id\x18\x63 \x02(\x04\x1a\xb3\x01\n\x05\x45rror\x12)\n\x04type\x18\x01 \x02(\x0e\x32\x1b.cellaserv.Reply.Error.Type\x12\x0c\n\x04what\x18\x02 \x01(\t\"q\n\x04Type\x12\x11\n\rNoSuchService\x10\x00\x12\x19\n\x15InvalidIdentification\x10\x01\x12\x10\n\x0cNoSuchMethod\x10\x02\x12\x10\n\x0c\x42\x61\x64\x41rguments\x10\x03\x12\x0b\n\x07Timeout\x10\x04\x12\n\n\x06\x43ustom\x10~\"\x1a\n\tSubscribe\x12\r\n\x05\x65vent\x18\x01 \x02(\t\"&\n\x07Publish\x12\r\n\x05\x65vent\x18\x01 \x02(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\x0c')
 
 
 
@@ -74,14 +74,18 @@ _REPLY_ERROR_TYPE = _descriptor.EnumDescriptor(
       options=None,
       type=None),
     _descriptor.EnumValueDescriptor(
-      name='Custom', index=4, number=126,
+      name='Timeout', index=4, number=4,
+      options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='Custom', index=5, number=126,
       options=None,
       type=None),
   ],
   containing_type=None,
   options=None,
   serialized_start=485,
-  serialized_end=585,
+  serialized_end=598,
 )
 
 
@@ -244,7 +248,7 @@ _REPLY_ERROR = _descriptor.Descriptor(
   is_extendable=False,
   extension_ranges=[],
   serialized_start=419,
-  serialized_end=585,
+  serialized_end=598,
 )
 
 _REPLY = _descriptor.Descriptor(
@@ -285,7 +289,7 @@ _REPLY = _descriptor.Descriptor(
   is_extendable=False,
   extension_ranges=[],
   serialized_start=344,
-  serialized_end=585,
+  serialized_end=598,
 )
 
 
@@ -312,8 +316,8 @@ _SUBSCRIBE = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=587,
-  serialized_end=613,
+  serialized_start=600,
+  serialized_end=626,
 )
 
 
@@ -347,8 +351,8 @@ _PUBLISH = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=615,
-  serialized_end=653,
+  serialized_start=628,
+  serialized_end=666,
 )
 
 _MESSAGE.fields_by_name['type'].enum_type = _MESSAGE_MESSAGETYPE

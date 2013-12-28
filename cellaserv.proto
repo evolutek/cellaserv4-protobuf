@@ -32,6 +32,7 @@ message Reply {
             InvalidIdentification = 1;
             NoSuchMethod = 2;
             BadArguments = 3;
+            Timeout = 4;
             Custom = 126;
         }
         required Type type = 1;

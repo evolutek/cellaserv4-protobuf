@@ -69,6 +69,7 @@ enum Reply_Error_Type {
   Reply_Error_Type_InvalidIdentification = 1,
   Reply_Error_Type_NoSuchMethod = 2,
   Reply_Error_Type_BadArguments = 3,
+  Reply_Error_Type_Timeout = 4,
   Reply_Error_Type_Custom = 126
 };
 bool Reply_Error_Type_IsValid(int value);
@@ -513,6 +514,7 @@ class Reply_Error : public ::google::protobuf::Message {
   static const Type InvalidIdentification = Reply_Error_Type_InvalidIdentification;
   static const Type NoSuchMethod = Reply_Error_Type_NoSuchMethod;
   static const Type BadArguments = Reply_Error_Type_BadArguments;
+  static const Type Timeout = Reply_Error_Type_Timeout;
   static const Type Custom = Reply_Error_Type_Custom;
   static inline bool Type_IsValid(int value) {
     return Reply_Error_Type_IsValid(value);

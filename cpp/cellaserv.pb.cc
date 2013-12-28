@@ -232,15 +232,15 @@ void protobuf_AddDesc_cellaserv_2eproto() {
     "name\030\001 \002(\t\022\026\n\016identification\030\002 \001(\t\"i\n\007Re"
     "quest\022\024\n\014service_name\030\001 \002(\t\022\036\n\026service_i"
     "dentification\030\002 \001(\t\022\016\n\006method\030\003 \002(\t\022\014\n\004d"
-    "ata\030\004 \001(\014\022\n\n\002id\030c \002(\004\"\361\001\n\005Reply\022\014\n\004data\030"
+    "ata\030\004 \001(\014\022\n\n\002id\030c \002(\004\"\376\001\n\005Reply\022\014\n\004data\030"
     "\001 \001(\014\022%\n\005error\030\002 \001(\0132\026.cellaserv.Reply.E"
-    "rror\022\n\n\002id\030c \002(\004\032\246\001\n\005Error\022)\n\004type\030\001 \002(\016"
+    "rror\022\n\n\002id\030c \002(\004\032\263\001\n\005Error\022)\n\004type\030\001 \002(\016"
     "2\033.cellaserv.Reply.Error.Type\022\014\n\004what\030\002 "
-    "\001(\t\"d\n\004Type\022\021\n\rNoSuchService\020\000\022\031\n\025Invali"
+    "\001(\t\"q\n\004Type\022\021\n\rNoSuchService\020\000\022\031\n\025Invali"
     "dIdentification\020\001\022\020\n\014NoSuchMethod\020\002\022\020\n\014B"
-    "adArguments\020\003\022\n\n\006Custom\020~\"\032\n\tSubscribe\022\r"
-    "\n\005event\030\001 \002(\t\"&\n\007Publish\022\r\n\005event\030\001 \002(\t\022"
-    "\014\n\004data\030\002 \001(\014", 653);
+    "adArguments\020\003\022\013\n\007Timeout\020\004\022\n\n\006Custom\020~\"\032"
+    "\n\tSubscribe\022\r\n\005event\030\001 \002(\t\"&\n\007Publish\022\r\n"
+    "\005event\030\001 \002(\t\022\014\n\004data\030\002 \001(\014", 666);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "cellaserv.proto", &protobuf_RegisterTypes);
   Message::default_instance_ = new Message();
@@ -1280,6 +1280,7 @@ bool Reply_Error_Type_IsValid(int value) {
     case 1:
     case 2:
     case 3:
+    case 4:
     case 126:
       return true;
     default:
@@ -1292,6 +1293,7 @@ const Reply_Error_Type Reply_Error::NoSuchService;
 const Reply_Error_Type Reply_Error::InvalidIdentification;
 const Reply_Error_Type Reply_Error::NoSuchMethod;
 const Reply_Error_Type Reply_Error::BadArguments;
+const Reply_Error_Type Reply_Error::Timeout;
 const Reply_Error_Type Reply_Error::Custom;
 const Reply_Error_Type Reply_Error::Type_MIN;
 const Reply_Error_Type Reply_Error::Type_MAX;
