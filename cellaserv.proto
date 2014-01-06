@@ -22,7 +22,7 @@ message Request {
     optional string service_identification = 2;
     required string method = 3;
     optional bytes data = 4;
-    required uint64 id = 99;
+    required fixed64 id = 99;
 }
 
 message Reply {
@@ -41,7 +41,7 @@ message Reply {
 
     optional bytes data = 1;
     optional Error error = 2;
-    required uint64 id = 99;
+    required fixed64 id = 99;
 }
 
 message Subscribe {

@@ -153,7 +153,7 @@ type Request struct {
 	ServiceIdentification *string `protobuf:"bytes,2,opt,name=service_identification" json:"service_identification,omitempty"`
 	Method                *string `protobuf:"bytes,3,req,name=method" json:"method,omitempty"`
 	Data                  []byte  `protobuf:"bytes,4,opt,name=data" json:"data,omitempty"`
-	Id                    *uint64 `protobuf:"varint,99,req,name=id" json:"id,omitempty"`
+	Id                    *uint64 `protobuf:"fixed64,99,req,name=id" json:"id,omitempty"`
 	XXX_unrecognized      []byte  `json:"-"`
 }
 
@@ -199,7 +199,7 @@ func (m *Request) GetId() uint64 {
 type Reply struct {
 	Data             []byte       `protobuf:"bytes,1,opt,name=data" json:"data,omitempty"`
 	Error            *Reply_Error `protobuf:"bytes,2,opt,name=error" json:"error,omitempty"`
-	Id               *uint64      `protobuf:"varint,99,req,name=id" json:"id,omitempty"`
+	Id               *uint64      `protobuf:"fixed64,99,req,name=id" json:"id,omitempty"`
 	XXX_unrecognized []byte       `json:"-"`
 }
 

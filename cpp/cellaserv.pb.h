@@ -417,7 +417,7 @@ class Request : public ::google::protobuf::Message {
   inline ::std::string* release_data();
   inline void set_allocated_data(::std::string* data);
 
-  // required uint64 id = 99;
+  // required fixed64 id = 99;
   inline bool has_id() const;
   inline void clear_id();
   static const int kIdFieldNumber = 99;
@@ -659,7 +659,7 @@ class Reply : public ::google::protobuf::Message {
   inline ::cellaserv::Reply_Error* release_error();
   inline void set_allocated_error(::cellaserv::Reply_Error* error);
 
-  // required uint64 id = 99;
+  // required fixed64 id = 99;
   inline bool has_id() const;
   inline void clear_id();
   static const int kIdFieldNumber = 99;
@@ -1408,7 +1408,7 @@ inline void Request::set_allocated_data(::std::string* data) {
   }
 }
 
-// required uint64 id = 99;
+// required fixed64 id = 99;
 inline bool Request::has_id() const {
   return (_has_bits_[0] & 0x00000010u) != 0;
 }
@@ -1639,7 +1639,7 @@ inline void Reply::set_allocated_error(::cellaserv::Reply_Error* error) {
   }
 }
 
-// required uint64 id = 99;
+// required fixed64 id = 99;
 inline bool Reply::has_id() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }

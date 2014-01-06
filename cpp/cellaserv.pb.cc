@@ -232,9 +232,9 @@ void protobuf_AddDesc_cellaserv_2eproto() {
     "name\030\001 \002(\t\022\026\n\016identification\030\002 \001(\t\"i\n\007Re"
     "quest\022\024\n\014service_name\030\001 \002(\t\022\036\n\026service_i"
     "dentification\030\002 \001(\t\022\016\n\006method\030\003 \002(\t\022\014\n\004d"
-    "ata\030\004 \001(\014\022\n\n\002id\030c \002(\004\"\376\001\n\005Reply\022\014\n\004data\030"
+    "ata\030\004 \001(\014\022\n\n\002id\030c \002(\006\"\376\001\n\005Reply\022\014\n\004data\030"
     "\001 \001(\014\022%\n\005error\030\002 \001(\0132\026.cellaserv.Reply.E"
-    "rror\022\n\n\002id\030c \002(\004\032\263\001\n\005Error\022)\n\004type\030\001 \002(\016"
+    "rror\022\n\n\002id\030c \002(\006\032\263\001\n\005Error\022)\n\004type\030\001 \002(\016"
     "2\033.cellaserv.Reply.Error.Type\022\014\n\004what\030\002 "
     "\001(\t\"q\n\004Type\022\021\n\rNoSuchService\020\000\022\031\n\025Invali"
     "dIdentification\020\001\022\020\n\014NoSuchMethod\020\002\022\020\n\014B"
@@ -1010,17 +1010,17 @@ bool Request::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(792)) goto parse_id;
+        if (input->ExpectTag(793)) goto parse_id;
         break;
       }
 
-      // required uint64 id = 99;
+      // required fixed64 id = 99;
       case 99: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
          parse_id:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED64>(
                  input, &id_)));
           set_has_id();
         } else {
@@ -1081,9 +1081,9 @@ void Request::SerializeWithCachedSizes(
       4, this->data(), output);
   }
 
-  // required uint64 id = 99;
+  // required fixed64 id = 99;
   if (has_id()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt64(99, this->id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteFixed64(99, this->id(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -1131,9 +1131,9 @@ void Request::SerializeWithCachedSizes(
         4, this->data(), target);
   }
 
-  // required uint64 id = 99;
+  // required fixed64 id = 99;
   if (has_id()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(99, this->id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteFixed64ToArray(99, this->id(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -1175,11 +1175,9 @@ int Request::ByteSize() const {
           this->data());
     }
 
-    // required uint64 id = 99;
+    // required fixed64 id = 99;
     if (has_id()) {
-      total_size += 2 +
-        ::google::protobuf::internal::WireFormatLite::UInt64Size(
-          this->id());
+      total_size += 2 + 8;
     }
 
   }
@@ -1679,17 +1677,17 @@ bool Reply::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(792)) goto parse_id;
+        if (input->ExpectTag(793)) goto parse_id;
         break;
       }
 
-      // required uint64 id = 99;
+      // required fixed64 id = 99;
       case 99: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
          parse_id:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
+                   ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_FIXED64>(
                  input, &id_)));
           set_has_id();
         } else {
@@ -1729,9 +1727,9 @@ void Reply::SerializeWithCachedSizes(
       2, this->error(), output);
   }
 
-  // required uint64 id = 99;
+  // required fixed64 id = 99;
   if (has_id()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt64(99, this->id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteFixed64(99, this->id(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -1756,9 +1754,9 @@ void Reply::SerializeWithCachedSizes(
         2, this->error(), target);
   }
 
-  // required uint64 id = 99;
+  // required fixed64 id = 99;
   if (has_id()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(99, this->id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteFixed64ToArray(99, this->id(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -1786,11 +1784,9 @@ int Reply::ByteSize() const {
           this->error());
     }
 
-    // required uint64 id = 99;
+    // required fixed64 id = 99;
     if (has_id()) {
-      total_size += 2 +
-        ::google::protobuf::internal::WireFormatLite::UInt64Size(
-          this->id());
+      total_size += 2 + 8;
     }
 
   }
