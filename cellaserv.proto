@@ -9,11 +9,15 @@ message Message {
         Publish = 4;
     }
     required MessageType type = 1;
+
+    // This field contains the serialized, actual message:  Register, Request...
     required bytes content = 2;
 }
 
 message Register {
+    // Name of the service
     required string name = 1;
+    // Use this field if multiple instances of the service exist
     optional string identification = 2;
 }
 
@@ -33,6 +37,8 @@ message Reply {
             NoSuchMethod = 2;
             BadArguments = 3;
             Timeout = 4;
+            // If you use this error type you should explain the error in the
+            // 'what' field
             Custom = 126;
         }
         required Type type = 1;
@@ -45,10 +51,12 @@ message Reply {
 }
 
 message Subscribe {
+    // The name of the event the sender of this message is subscribing to
     required string event = 1;
 }
 
 message Publish {
+    // The name of the event the sender is publishing
     required string event = 1;
     optional bytes data = 2;
 }

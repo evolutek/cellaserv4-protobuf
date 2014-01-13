@@ -1,0 +1,22 @@
+cellaserv2-protobuf
+===================
+
+[cellaserv2](https://bitbucket.org/evolutek/cellaserv2) source and generated
+protobuf files.
+
+Use this repository as a submodule
+----------------------------------
+
+    $ cd your_repo
+
+How to get protoc-gen-go?
+-------------------------
+
+Run:
+
+    $ go get code.google.com/p/goprotobuf/{proto,protoc-gen-go}
+
+Then add $GOPATH/bin to your $PATH
+
+For more informations, see:
+[goprotobuf's README](http://code.google.com/p/goprotobuf/source/browse/README)
