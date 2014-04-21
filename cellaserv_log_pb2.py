@@ -15,7 +15,7 @@ import cellaserv_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='cellaserv_log.proto',
   package='cellaserv',
-  serialized_pb=b'\n\x13\x63\x65llaserv_log.proto\x12\tcellaserv\x1a\x0f\x63\x65llaserv.proto\"-\n\nLogMessage\x12\x0e\n\x06sender\x18\x01 \x02(\t\x12\x0f\n\x07\x63ontent\x18\x02 \x02(\x0c')
+  serialized_pb=b'\n\x13\x63\x65llaserv_log.proto\x12\tcellaserv\x1a\x0f\x63\x65llaserv.proto\"B\n\nLogMessage\x12\x0e\n\x06sender\x18\x01 \x02(\t\x12\x13\n\x0b\x64\x65stination\x18\x03 \x01(\t\x12\x0f\n\x07\x63ontent\x18\x02 \x02(\x0c')
 
 
 
@@ -35,7 +35,14 @@ _LOGMESSAGE = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='content', full_name='cellaserv.LogMessage.content', index=1,
+      name='destination', full_name='cellaserv.LogMessage.destination', index=1,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='content', full_name='cellaserv.LogMessage.content', index=2,
       number=2, type=12, cpp_type=9, label=2,
       has_default_value=False, default_value=b"",
       message_type=None, enum_type=None, containing_type=None,
@@ -51,7 +58,7 @@ _LOGMESSAGE = _descriptor.Descriptor(
   is_extendable=False,
   extension_ranges=[],
   serialized_start=51,
-  serialized_end=96,
+  serialized_end=117,
 )
 
 DESCRIPTOR.message_types_by_name['LogMessage'] = _LOGMESSAGE

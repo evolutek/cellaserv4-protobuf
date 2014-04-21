@@ -2,15 +2,28 @@
 // source: cellaserv.proto
 // DO NOT EDIT!
 
+/*
+Package cellaserv is a generated protocol buffer package.
+
+It is generated from these files:
+	cellaserv.proto
+	cellaserv_log.proto
+
+It has these top-level messages:
+	Message
+	Register
+	Request
+	Reply
+	Subscribe
+	Publish
+*/
 package cellaserv
 
 import proto "code.google.com/p/goprotobuf/proto"
-import json "encoding/json"
 import math "math"
 
-// Reference proto, json, and math imports to suppress error if they are not otherwise used.
+// Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
-var _ = &json.SyntaxError{}
 var _ = math.Inf
 
 type Message_MessageType int32
@@ -63,7 +76,9 @@ const (
 	Reply_Error_NoSuchMethod          Reply_Error_Type = 2
 	Reply_Error_BadArguments          Reply_Error_Type = 3
 	Reply_Error_Timeout               Reply_Error_Type = 4
-	Reply_Error_Custom                Reply_Error_Type = 126
+	// If you use this error type you should explain the error in the
+	// 'what' field
+	Reply_Error_Custom Reply_Error_Type = 126
 )
 
 var Reply_Error_Type_name = map[int32]string{
@@ -101,9 +116,10 @@ func (x *Reply_Error_Type) UnmarshalJSON(data []byte) error {
 }
 
 type Message struct {
-	Type             *Message_MessageType `protobuf:"varint,1,req,name=type,enum=cellaserv.Message_MessageType" json:"type,omitempty"`
-	Content          []byte               `protobuf:"bytes,2,req,name=content" json:"content,omitempty"`
-	XXX_unrecognized []byte               `json:"-"`
+	Type *Message_MessageType `protobuf:"varint,1,req,name=type,enum=cellaserv.Message_MessageType" json:"type,omitempty"`
+	// This field contains the serialized, actual message:  Register, Request...
+	Content          []byte `protobuf:"bytes,2,req,name=content" json:"content,omitempty"`
+	XXX_unrecognized []byte `json:"-"`
 }
 
 func (m *Message) Reset()         { *m = Message{} }
@@ -125,7 +141,9 @@ func (m *Message) GetContent() []byte {
 }
 
 type Register struct {
-	Name             *string `protobuf:"bytes,1,req,name=name" json:"name,omitempty"`
+	// Name of the service
+	Name *string `protobuf:"bytes,1,req,name=name" json:"name,omitempty"`
+	// Use this field if multiple instances of the service exist
 	Identification   *string `protobuf:"bytes,2,opt,name=identification" json:"identification,omitempty"`
 	XXX_unrecognized []byte  `json:"-"`
 }
@@ -253,6 +271,7 @@ func (m *Reply_Error) GetWhat() string {
 }
 
 type Subscribe struct {
+	// The name of the event the sender of this message is subscribing to
 	Event            *string `protobuf:"bytes,1,req,name=event" json:"event,omitempty"`
 	XXX_unrecognized []byte  `json:"-"`
 }
@@ -269,6 +288,7 @@ func (m *Subscribe) GetEvent() string {
 }
 
 type Publish struct {
+	// The name of the event the sender is publishing
 	Event            *string `protobuf:"bytes,1,req,name=event" json:"event,omitempty"`
 	Data             []byte  `protobuf:"bytes,2,opt,name=data" json:"data,omitempty"`
 	XXX_unrecognized []byte  `json:"-"`

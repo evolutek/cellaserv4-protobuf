@@ -34,8 +34,9 @@ void protobuf_AssignDesc_cellaserv_5flog_2eproto() {
       "cellaserv_log.proto");
   GOOGLE_CHECK(file != NULL);
   LogMessage_descriptor_ = file->message_type(0);
-  static const int LogMessage_offsets_[2] = {
+  static const int LogMessage_offsets_[3] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LogMessage, sender_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LogMessage, destination_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(LogMessage, content_),
   };
   LogMessage_reflection_ =
@@ -81,8 +82,8 @@ void protobuf_AddDesc_cellaserv_5flog_2eproto() {
   ::cellaserv::protobuf_AddDesc_cellaserv_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\023cellaserv_log.proto\022\tcellaserv\032\017cellas"
-    "erv.proto\"-\n\nLogMessage\022\016\n\006sender\030\001 \002(\t\022"
-    "\017\n\007content\030\002 \002(\014", 96);
+    "erv.proto\"B\n\nLogMessage\022\016\n\006sender\030\001 \002(\t\022"
+    "\023\n\013destination\030\003 \001(\t\022\017\n\007content\030\002 \002(\014", 117);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "cellaserv_log.proto", &protobuf_RegisterTypes);
   LogMessage::default_instance_ = new LogMessage();
@@ -101,6 +102,7 @@ struct StaticDescriptorInitializer_cellaserv_5flog_2eproto {
 
 #ifndef _MSC_VER
 const int LogMessage::kSenderFieldNumber;
+const int LogMessage::kDestinationFieldNumber;
 const int LogMessage::kContentFieldNumber;
 #endif  // !_MSC_VER
 
@@ -121,6 +123,7 @@ LogMessage::LogMessage(const LogMessage& from)
 void LogMessage::SharedCtor() {
   _cached_size_ = 0;
   sender_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+  destination_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   content_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -132,6 +135,9 @@ LogMessage::~LogMessage() {
 void LogMessage::SharedDtor() {
   if (sender_ != &::google::protobuf::internal::kEmptyString) {
     delete sender_;
+  }
+  if (destination_ != &::google::protobuf::internal::kEmptyString) {
+    delete destination_;
   }
   if (content_ != &::google::protobuf::internal::kEmptyString) {
     delete content_;
@@ -166,6 +172,11 @@ void LogMessage::Clear() {
     if (has_sender()) {
       if (sender_ != &::google::protobuf::internal::kEmptyString) {
         sender_->clear();
+      }
+    }
+    if (has_destination()) {
+      if (destination_ != &::google::protobuf::internal::kEmptyString) {
+        destination_->clear();
       }
     }
     if (has_content()) {
@@ -210,6 +221,23 @@ bool LogMessage::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
+        if (input->ExpectTag(26)) goto parse_destination;
+        break;
+      }
+
+      // optional string destination = 3;
+      case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
+         parse_destination:
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_destination()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+            this->destination().data(), this->destination().length(),
+            ::google::protobuf::internal::WireFormat::PARSE);
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -247,6 +275,15 @@ void LogMessage::SerializeWithCachedSizes(
       2, this->content(), output);
   }
 
+  // optional string destination = 3;
+  if (has_destination()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->destination().data(), this->destination().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      3, this->destination(), output);
+  }
+
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -272,6 +309,16 @@ void LogMessage::SerializeWithCachedSizes(
         2, this->content(), target);
   }
 
+  // optional string destination = 3;
+  if (has_destination()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
+      this->destination().data(), this->destination().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE);
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        3, this->destination(), target);
+  }
+
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -288,6 +335,13 @@ int LogMessage::ByteSize() const {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->sender());
+    }
+
+    // optional string destination = 3;
+    if (has_destination()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->destination());
     }
 
     // required bytes content = 2;
@@ -327,6 +381,9 @@ void LogMessage::MergeFrom(const LogMessage& from) {
     if (from.has_sender()) {
       set_sender(from.sender());
     }
+    if (from.has_destination()) {
+      set_destination(from.destination());
+    }
     if (from.has_content()) {
       set_content(from.content());
     }
@@ -347,7 +404,7 @@ void LogMessage::CopyFrom(const LogMessage& from) {
 }
 
 bool LogMessage::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
+  if ((_has_bits_[0] & 0x00000005) != 0x00000005) return false;
 
   return true;
 }
@@ -355,6 +412,7 @@ bool LogMessage::IsInitialized() const {
 void LogMessage::Swap(LogMessage* other) {
   if (other != this) {
     std::swap(sender_, other->sender_);
+    std::swap(destination_, other->destination_);
     std::swap(content_, other->content_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);

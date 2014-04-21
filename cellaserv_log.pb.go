@@ -5,16 +5,15 @@
 package cellaserv
 
 import proto "code.google.com/p/goprotobuf/proto"
-import json "encoding/json"
 import math "math"
 
-// Reference proto, json, and math imports to suppress error if they are not otherwise used.
+// Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
-var _ = &json.SyntaxError{}
 var _ = math.Inf
 
 type LogMessage struct {
 	Sender           *string `protobuf:"bytes,1,req,name=sender" json:"sender,omitempty"`
+	Destination      *string `protobuf:"bytes,3,opt,name=destination" json:"destination,omitempty"`
 	Content          []byte  `protobuf:"bytes,2,req,name=content" json:"content,omitempty"`
 	XXX_unrecognized []byte  `json:"-"`
 }
@@ -26,6 +25,13 @@ func (*LogMessage) ProtoMessage()    {}
 func (m *LogMessage) GetSender() string {
 	if m != nil && m.Sender != nil {
 		return *m.Sender
+	}
+	return ""
+}
+
+func (m *LogMessage) GetDestination() string {
+	if m != nil && m.Destination != nil {
+		return *m.Destination
 	}
 	return ""
 }
