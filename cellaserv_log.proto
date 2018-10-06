@@ -1,6 +1,5 @@
+syntax = "proto2";
 package cellaserv;
-
-import "cellaserv.proto";
 
 message LogMessage {
     required string sender = 1; // "addr:port"
