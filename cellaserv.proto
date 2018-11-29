@@ -1,63 +1,64 @@
-syntax = "proto2";
+syntax = "proto3";
 package cellaserv;
 
 message Message {
-    enum MessageType {
-        Register = 0;
-        Request = 1;
-        Reply = 2;
-        Subscribe = 3;
-        Publish = 4;
-    }
-    required MessageType type = 1;
+  enum MessageType {
+    Register = 0;
+    Request = 1;
+    Reply = 2;
+    Subscribe = 3;
+    Publish = 4;
+  }
+  MessageType type = 1;
 
-    // This field contains the serialized, actual message:  Register, Request...
-    required bytes content = 2;
+  // This field contains the serialized, actual message:  Register, Request...
+  bytes content = 2;
 }
 
 message Register {
-    // Name of the service
-    required string name = 1;
-    // Use this field if multiple instances of the service exist
-    optional string identification = 2;
+  // Name of the service
+  string name = 1;
+  // Use this field if multiple instances of the service exist
+  string identification = 2;
 }
 
 message Request {
-    required string service_name = 1;
-    optional string service_identification = 2;
-    required string method = 3;
-    optional bytes data = 4;
-    required fixed64 id = 99;
+  string service_name = 1;
+  string service_identification = 2;
+  string method = 3;
+  bytes data = 4;
+  fixed64 id = 99;
 }
 
 message Reply {
-    message Error {
-        enum Type {
-            NoSuchService = 0;
-            InvalidIdentification = 1;
-            NoSuchMethod = 2;
-            BadArguments = 3;
-            Timeout = 4;
-            // If you use this error type you should explain the error in the
-            // 'what' field
-            Custom = 126;
-        }
-        required Type type = 1;
-        optional string what = 2;
+  message Error {
+    enum Type {
+      NoError = 0;
+      NoSuchService = 1;
+      InvalidIdentification = 2;
+      NoSuchMethod = 3;
+      BadArguments = 4;
+      Timeout = 5;
+      // If you use this error type you should explain the error in the
+      // 'what' field
+      Custom = 126;
     }
+    Type type = 1;
+    string what = 2;
+  }
 
-    optional bytes data = 1;
-    optional Error error = 2;
-    required fixed64 id = 99;
+  bytes data = 1;
+  Error error = 2;
+  fixed64 id = 99;
 }
 
 message Subscribe {
-    // The name of the event the sender of this message is subscribing to
-    required string event = 1;
+  // The name of the event the sender of this message is subscribing to
+  string event = 1;
 }
 
 message Publish {
-    // The name of the event the sender is publishing
-    required string event = 1;
-    optional bytes data = 2;
+  // The name of the event the sender is publishing
+  string event = 1;
+  bytes data = 2;
 }

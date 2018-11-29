@@ -3,56 +3,26 @@
 
 package cellaserv
 
-import (
-	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	math "math"
-)
+import proto "github.com/golang/protobuf/proto"
+import fmt "fmt"
+import math "math"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-// This is a compile-time assertion to ensure that this generated file
-// is compatible with the proto package it is being compiled against.
-// A compilation error at this line likely means your copy of the
-// proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
-
 type LogMessage struct {
-	Sender               *string  `protobuf:"bytes,1,req,name=sender" json:"sender,omitempty"`
-	Destination          *string  `protobuf:"bytes,3,opt,name=destination" json:"destination,omitempty"`
-	Content              []byte   `protobuf:"bytes,2,req,name=content" json:"content,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Sender           *string `protobuf:"bytes,1,req,name=sender" json:"sender,omitempty"`
+	Destination      *string `protobuf:"bytes,3,opt,name=destination" json:"destination,omitempty"`
+	Content          []byte  `protobuf:"bytes,2,req,name=content" json:"content,omitempty"`
+	XXX_unrecognized []byte  `json:"-"`
 }
 
-func (m *LogMessage) Reset()         { *m = LogMessage{} }
-func (m *LogMessage) String() string { return proto.CompactTextString(m) }
-func (*LogMessage) ProtoMessage()    {}
-func (*LogMessage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_1f551bdd0495397a, []int{0}
-}
-
-func (m *LogMessage) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_LogMessage.Unmarshal(m, b)
-}
-func (m *LogMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_LogMessage.Marshal(b, m, deterministic)
-}
-func (m *LogMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_LogMessage.Merge(m, src)
-}
-func (m *LogMessage) XXX_Size() int {
-	return xxx_messageInfo_LogMessage.Size(m)
-}
-func (m *LogMessage) XXX_DiscardUnknown() {
-	xxx_messageInfo_LogMessage.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_LogMessage proto.InternalMessageInfo
+func (m *LogMessage) Reset()                    { *m = LogMessage{} }
+func (m *LogMessage) String() string            { return proto.CompactTextString(m) }
+func (*LogMessage) ProtoMessage()               {}
+func (*LogMessage) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{0} }
 
 func (m *LogMessage) GetSender() string {
 	if m != nil && m.Sender != nil {
@@ -79,9 +49,9 @@ func init() {
 	proto.RegisterType((*LogMessage)(nil), "cellaserv.LogMessage")
 }
 
-func init() { proto.RegisterFile("cellaserv_log.proto", fileDescriptor_1f551bdd0495397a) }
+func init() { proto.RegisterFile("cellaserv_log.proto", fileDescriptor1) }
 
-var fileDescriptor_1f551bdd0495397a = []byte{
+var fileDescriptor1 = []byte{
 	// 125 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x4c, 0xc8, 0x31, 0x0a, 0x02, 0x31,
 	0x10, 0x05, 0x50, 0x36, 0x82, 0x92, 0xd1, 0x2a, 0x82, 0xa4, 0x0c, 0x56, 0xa9, 0x3c, 0x89, 0x36,
