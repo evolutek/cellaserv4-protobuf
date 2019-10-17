@@ -1,7 +1,7 @@
-cellaserv2-protobuf
+cellaserv3-protobuf
 ===================
 
-[cellaserv2](https://github.com/evolutek/cellaserv2) source and generated
+[cellaserv3](https://bitbucket.org/evolutek/cellaserv3) source and generated
 protobuf files.
 
 Use this repository as a submodule
