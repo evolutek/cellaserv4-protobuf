@@ -1,8 +1,0 @@
-syntax = "proto2";
-package cellaserv;
-
-message LogMessage {
-    required string sender = 1; // "addr:port"
-    optional string destination = 3; // "addr:port", unset means "cellaserv"
-    required bytes content = 2; // raw msg log
-}

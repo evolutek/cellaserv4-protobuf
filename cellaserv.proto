@@ -1,5 +1,9 @@
 syntax = "proto3";
+
 package cellaserv;
+
+// The Go package name is "cellaserv".
+option go_package = "github.com/evolutek/cellaserv";
 
 message Message {
   enum MessageType {
