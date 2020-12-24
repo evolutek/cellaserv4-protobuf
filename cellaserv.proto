@@ -5,33 +5,20 @@ package cellaserv;
 // The Go package name is "cellaserv".
 option go_package = "github.com/evolutek/cellaserv";
 
-message Message {
-  enum MessageType {
-    Register = 0;
-    Request = 1;
-    Reply = 2;
-    Subscribe = 3;
-    Publish = 4;
-  }
-  MessageType type = 1;
-
-  // This field contains the serialized, actual message:  Register, Request...
-  bytes content = 2;
-}
-
-message Register {
-  // Name of the service
-  string name = 1;
-  // Use this field if multiple instances of the service exist
-  string identification = 2;
-}
-
 message Request {
-  string service_name = 1;
-  string service_identification = 2;
-  string method = 3;
-  bytes data = 4;
-  fixed64 id = 99;
+  optional fixed64 id = 1;
+  // Name of the service
+  optional string name = 2;
+  // Use this field if multiple instances of the service exist
+  optional string identification = 3;
+  optional string method = 4;
+  optional bytes data = 5;
+  // Automatically subscribe on request and unsubscribe on reply
+  optional string context_event_name = 6;
+}
+
+message Cancel {
+  optional fixed64 id = 1;
 }
 
 message Reply {
@@ -47,22 +34,32 @@ message Reply {
       // 'what' field
       Custom = 126;
     }
-    Type type = 1;
-    string what = 2;
+    optional Type type = 1;
+    optional string what = 2;
   }
 
-  bytes data = 1;
-  Error error = 2;
-  fixed64 id = 99;
+  optional fixed64 id = 1;
+  optional bytes data = 2;
+  optional Error error = 3;
 }
 
 message Subscribe {
   // The name of the event the sender of this message is subscribing to
-  string event = 1;
+  optional string event = 1;
 }
 
 message Publish {
   // The name of the event the sender is publishing
-  string event = 1;
-  bytes data = 2;
+  optional string event = 1;
+  optional bytes data = 2;
+}
+
+message Message {
+  oneof message {
+    Request request = 1;
+    Reply reply = 2;
+    Cancel cancel = 3;
+    Subscribe subscribe = 4;
+    Publish publish = 5;
+  }
 }
